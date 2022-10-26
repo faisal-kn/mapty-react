@@ -1,56 +1,29 @@
 import { useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
 
 const Filterevents = () => {
+  const [key, setKey] = useState("hobbies");
+
   return (
     <div>
-      <div className="container-fluid " style="margin-top:60px;">
+      <div className="container-fluid " style={{ marginTop: "60px" }}>
         <div className="row pb-4">
           <div className="col-lg-4 aside-container">
             <div className="row first-row">
               <div className="col">
                 <div className="card">
-                  <div className="card-body" style="height:320px">
+                  <div className="card-body" style={{ height: "320px" }}>
                     <h5 className="card-title">Filter events</h5>
-                    <p className="card-text">
-                      <ul className="nav nav-tabs" id="myTab" role="tablist">
-                        <li className="nav-item" role="presentation">
-                          <button
-                            className="nav-link mr-4"
-                            id="profile-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#profile"
-                            type="button"
-                            role="tab"
-                            aria-controls="profile"
-                            aria-selected="false"
-                          >
-                            Search By Hobbies
-                          </button>
-                        </li>
-                        <li className="nav-item" role="presentation">
-                          <button
-                            className="nav-link mr-4"
-                            id="contact-tab"
-                            data-bs-toggle="tab"
-                            data-bs-target="#contact"
-                            type="button"
-                            role="tab"
-                            aria-controls="contact"
-                            aria-selected="false"
-                          >
-                            Search By City Name
-                          </button>
-                        </li>
-                      </ul>
-                      <div className="tab-content mt-3" id="myTabContent">
-                        <div
-                          className="tab-pane fade show active"
-                          id="profile"
-                          role="tabpanel"
-                          aria-labelledby="profile-tab"
-                        >
+                    <span className="card-text">
+                      <Tabs
+                        defaultActiveKey="hobbies"
+                        transition={false}
+                        id="noanim-tab-example"
+                        className="mb-3"
+                      >
+                        <Tab eventKey="hobbies" title="Search By Hobbies">
                           <div className="mb-3">
-                            <label for="Select" className="form-label">
+                            <label htmlFor="Select" className="form-label">
                               Select your hobbies
                             </label>
                             <select id="hobbies-select" className="form-select">
@@ -73,16 +46,11 @@ const Filterevents = () => {
                           >
                             Find
                           </button>
-                        </div>
-                        <div
-                          className="tab-pane fade"
-                          id="contact"
-                          role="tabpanel"
-                          aria-labelledby="contact-tab"
-                        >
+                        </Tab>
+                        <Tab eventKey="profile" title="Search By City Name">
                           <div className="d-flex align-items-end justify-content-center">
                             <div className="flex-grow-1 me-3">
-                              <label className="form-label" for="lat">
+                              <label className="form-label" htmlFor="lat">
                                 City name
                               </label>
                               <input
@@ -91,7 +59,7 @@ const Filterevents = () => {
                                 id="lat"
                                 name="firstname"
                                 placeholder="city name"
-                              />
+                              /> 
                             </div>
                           </div>
                           <button
@@ -101,9 +69,9 @@ const Filterevents = () => {
                           >
                             Find
                           </button>
-                        </div>
-                      </div>
-                    </p>
+                        </Tab>
+                      </Tabs>
+                    </span>
                   </div>
                 </div>
               </div>
