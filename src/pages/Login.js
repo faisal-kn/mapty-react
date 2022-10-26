@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
-import { useHistory } from "react-router-dom";
 
 import Spinner from "../components/Spinner";
 import styles from "../css/login.module.css";
@@ -11,7 +10,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { promiseInProgress } = usePromiseTracker();
-  const history = useHistory();
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -32,7 +30,6 @@ const Login = () => {
     const res = await trackPromise(submitHandler());
     if (res.data.status === "success") {
       console.log(res.data.data.user._id);
-      history.replace("/");
     }
   };
   return (
