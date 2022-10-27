@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const AddEvent = () => {
+const AddEvent = ({ lat, lng, host, createMarker }) => {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
@@ -12,6 +12,34 @@ const AddEvent = () => {
   const [totalSpot, setTotalSpot] = useState(0);
   const [description, setDescription] = useState("");
 
+  const formSubmitHandler = async () => {
+    try {
+      const form = new FormData();
+      //   console.log(photo);
+      //   form.append("photo", photo.files[0]);
+      form.append("name", name);
+      form.append("date", date);
+      form.append("location", [lat, lng]);
+      form.append("hobby", hobby);
+      form.append("host", host);
+      form.append("description", description);
+      form.append("totalSpot", totalSpot);
+      console.log([lat, lng]);
+      const res = await fetch("http://localhost:3001/api/event/create-event", {
+        method: "POST",
+        body: form,
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.status === "success") {
+        createMarker(data.data.newEvent);
+        // myModal.hide();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -19,7 +47,12 @@ const AddEvent = () => {
           <Modal.Title>Add a event</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form action="#" class="form" id="form-event--data">
+          <form
+            action="#"
+            class="form"
+            id="form-event--data"
+            onSubmit={formSubmitHandler}
+          >
             <div class="container">
               <div class="row">
                 <div class="col-lg-12 me-3 pt-1">
