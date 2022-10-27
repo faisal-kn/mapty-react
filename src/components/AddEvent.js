@@ -1,18 +1,19 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
+import AuthContext from "../context/auth-context";
+import axios from "axios";
 
-const AddEvent = ({ lat, lng, host, createMarker }) => {
-  const [show, setShow] = useState(true);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
   const [name, setName] = useState("");
-  const [date, setDate] = useState("dd/mm/yyyy");
+  const [date, setDate] = useState("yyyy-MM-dd");
   const [hobby, setHobby] = useState("Games");
   const [totalSpot, setTotalSpot] = useState(0);
   const [description, setDescription] = useState("");
 
-  const formSubmitHandler = async () => {
+  const ctx = useContext(AuthContext);
+
+  const formSubmitHandler = async (e) => {
+    e.preventDefault();
     try {
       const form = new FormData();
       //   console.log(photo);
@@ -21,19 +22,22 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
       form.append("date", date);
       form.append("location", [lat, lng]);
       form.append("hobby", hobby);
-      form.append("host", host);
+      form.append("host", ctx.username);
       form.append("description", description);
       form.append("totalSpot", totalSpot);
-      console.log([lat, lng]);
-      const res = await fetch("http://localhost:3001/api/event/create-event", {
+
+      const options = {
+        url: "http://localhost:3001/api/event/create-event",
         method: "POST",
-        body: form,
-      });
-      const data = await res.json();
-      console.log(data);
-      if (data.status === "success") {
-        createMarker(data.data.newEvent);
-        // myModal.hide();
+        data: form,
+        withCredentials: true,
+        headers: { "Content-Type": "multipart/form-data" },
+      };
+
+      const res = await axios(options);
+      if (res.data.status === "success") {
+        addMarkerHandler(res.data.data.newEvent);
+        handleClose();
       }
     } catch (err) {
       console.log(err);
@@ -46,21 +50,21 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
         <Modal.Header closeButton>
           <Modal.Title>Add a event</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <form
-            action="#"
-            class="form"
-            id="form-event--data"
-            onSubmit={formSubmitHandler}
-          >
-            <div class="container">
-              <div class="row">
-                <div class="col-lg-12 me-3 pt-1">
-                  <label class="form-label" for="lat">
+        <form
+          action="#"
+          className="form"
+          id="form-event--data"
+          onSubmit={formSubmitHandler}
+        >
+          <Modal.Body>
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-12 me-3 pt-1">
+                  <label className="form-label" htmlFor="lat">
                     Name
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     id="name"
                     name="name"
@@ -70,13 +74,13 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
                   />
                 </div>
               </div>
-              <div class="row">
-                <div class=" me-3 pt-1">
-                  <label class="form-label" for="lat">
+              <div className="row">
+                <div className=" me-3 pt-1">
+                  <label className="form-label" htmlFor="lat">
                     Date
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="date"
                     id="date"
                     name="date"
@@ -86,14 +90,14 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
                   />
                 </div>
               </div>
-              <div class="row">
-                <div class=" me-3 pt-1">
-                  <label for="Select" class="form-label">
+              <div className="row">
+                <div className=" me-3 pt-1">
+                  <label htmlFor="Select" className="form-label">
                     Select most relevent hobbie
                   </label>
                   <select
                     id="hobbies"
-                    class="form-select"
+                    className="form-select"
                     value={hobby}
                     onChange={(e) => setHobby(e.target.value)}
                   >
@@ -110,29 +114,30 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
                   </select>
                 </div>
               </div>
-              <div class="row">
-                <div class="me-3 pt-1">
-                  <label class="form-label" for="lat">
+              <div className="row">
+                <div className="me-3 pt-1">
+                  <label className="form-label" htmlFor="lat">
                     Host
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="text"
                     id="host"
                     name="host"
+                    value={ctx.username}
                     required
                     disabled
                   />
                 </div>
               </div>
 
-              <div class="row">
-                <div class="me-3 pt-1">
-                  <label class="form-label" for="lat">
+              <div className="row">
+                <div className="me-3 pt-1">
+                  <label className="form-label" htmlFor="lat">
                     Total Spot
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     type="number"
                     id="total"
                     min="1"
@@ -143,10 +148,10 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
                   />
                 </div>
               </div>
-              <div class="form-group">
-                <label for="event-description">Event Description</label>
+              <div className="form-group">
+                <label htmlFor="event-description">Event Description</label>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   id="event-description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
@@ -155,19 +160,16 @@ const AddEvent = ({ lat, lng, host, createMarker }) => {
               </div>
               <div>
                 <label>Upload Event Pictures</label>
-                <input type="file" name="photo" id="photo" required />
+                <input type="file" name="photo" id="photo" />
               </div>
             </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+          </Modal.Body>
+          <Modal.Footer>
+            <button type="submit" className="btn btn-primary" id="save">
+              Save
+            </button>
+          </Modal.Footer>
+        </form>
       </Modal>
     </>
   );

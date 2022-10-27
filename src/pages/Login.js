@@ -5,16 +5,17 @@ import { trackPromise } from "react-promise-tracker";
 
 import Spinner from "../components/Spinner";
 import styles from "../css/login.module.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ logStateHandler }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { promiseInProgress } = usePromiseTracker();
 
+  const navigate = useNavigate();
   const submitHandler = async (e) => {
-    e.preventDefault();
     const options = {
-      url: "",
+      url: "http://localhost:3001/api/user/login",
       method: "POST",
       withCredentials: true,
       data: {
@@ -29,9 +30,15 @@ const Login = () => {
     e.preventDefault();
     const res = await trackPromise(submitHandler());
     if (res.data.status === "success") {
-      console.log(res.data.data.user._id);
+      logStateHandler(
+        true,
+        res.data.data.user._id,
+        res.data.data.user.username
+      );
+      navigate("/events", { replace: true });
     }
   };
+
   return (
     <>
       {promiseInProgress === true ? (
