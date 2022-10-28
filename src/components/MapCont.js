@@ -32,7 +32,7 @@ const MapCont = ({ isAddEvent, openModal, markers }) => {
   return (
     <MapContainer
       center={[centerLat, centerLng]}
-      zoom={13}
+      zoom={10}
       scrollWheelZoom={true}
       style={{ height: "96vh" }}
     >
@@ -42,7 +42,6 @@ const MapCont = ({ isAddEvent, openModal, markers }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {markers.map((marker, i) => {
-        console.log(marker);
         return (
           <CustomMarker
             position={[marker.location[0], marker.location[1]]}

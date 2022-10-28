@@ -1,9 +1,32 @@
 import { useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
+import axios from "axios";
+
 const Filterevents = () => {
   const [key, setKey] = useState("hobbies");
+  const [hobby, setHobby] = useState("Games");
 
+  const hobbyEventHandler = async () => {
+    try {
+      const options = {
+        url: `http://localhost:3001/api/event/get-event-by-hobby/${hobby}`,
+        method: "GET",
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await axios(options);
+      console.log(res);
+      data.data.eventByHobby.forEach((ele) => {
+        createMarker(ele);
+      });
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div>
       <div className="row first-row">
@@ -23,7 +46,12 @@ const Filterevents = () => {
                       <label htmlFor="Select" className="form-label">
                         Select your hobbies
                       </label>
-                      <select id="hobbies-select" className="form-select">
+                      <select
+                        id="hobbies-select"
+                        className="form-select"
+                        value={hobby}
+                        onChange={(e) => setHobby(e.target.value)}
+                      >
                         <option>Games</option>
                         <option>coding meetups</option>
                         <option>Mixers</option>
@@ -38,8 +66,8 @@ const Filterevents = () => {
                     </div>
                     <button
                       className="btn btn-outline-success mt-4"
-                      id="secondButton"
                       type="submit"
+                      onClick={hobbyEventHandler}
                     >
                       Find
                     </button>

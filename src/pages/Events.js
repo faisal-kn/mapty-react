@@ -5,6 +5,8 @@ import PopularEvents from "../components/PopularEvents";
 import AddEvent from "../components/AddEvent";
 import MapCont from "../components/MapCont";
 
+import axios from "axios";
+
 const Events = () => {
   const [addEvent, setAddEvent] = useState(false);
   const [clickedLat, setClickedLat] = useState(null);
@@ -24,31 +26,34 @@ const Events = () => {
     }
   };
 
-  const addMarkerHandler = useCallback((ele) => {
-    setMarker([...markers, ele]);
-  });
+  const addMarkerHandler = (ele) => {
+    setMarker([...markers, ...ele]);
+  };
+
+  
 
   useEffect(() => {
     const getAllEvents = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/event/all-events", {
+        const options = {
+          url: "http://localhost:3001/api/event/all-events",
           method: "GET",
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
-        });
-        const data = await res.json();
-        if (data.status === "success") {
-          data.data.events.forEach((ele) => {
-            addMarkerHandler(ele);
-          });
+        };
+        const res = await axios(options);
+
+        if (res.data.status === "success") {
+          addMarkerHandler(res.data.data.events);
         }
       } catch (err) {
         console.log(err);
       }
     };
     getAllEvents();
-  }, [addMarkerHandler]);
+  }, []);
 
   return (
     <div>

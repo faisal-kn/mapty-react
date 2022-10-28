@@ -4,8 +4,16 @@ import AuthContext from "../context/auth-context";
 import axios from "axios";
 
 const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
+  const currentDate = new Date();
+
+  const year = currentDate.toLocaleString("default", { year: "numeric" });
+  const month = currentDate.toLocaleString("default", { month: "2-digit" });
+  const day = currentDate.toLocaleString("default", { day: "2-digit" });
+
+  var formattedDate = year + "-" + month + "-" + day;
+
   const [name, setName] = useState("");
-  const [date, setDate] = useState("yyyy-MM-dd");
+  const [date, setDate] = useState(formattedDate);
   const [hobby, setHobby] = useState("Games");
   const [totalSpot, setTotalSpot] = useState(0);
   const [description, setDescription] = useState("");
@@ -36,7 +44,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
 
       const res = await axios(options);
       if (res.data.status === "success") {
-        addMarkerHandler(res.data.data.newEvent);
+        addMarkerHandler([res.data.data.newEvent]);
         handleClose();
       }
     } catch (err) {
