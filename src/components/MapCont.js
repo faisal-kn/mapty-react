@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import CustomMarker from "./CustomMarker";
 
-const MapCont = ({ isAddEvent, openModal, markers }) => {
-  const [centerLat, setLat] = useState(14.4484);
-  const [centerLng, setLng] = useState(79.9888);
-
+const MapCont = ({
+  isAddEvent,
+  openModal,
+  markers,
+  centerLat,
+  centerLng,
+  setMapCenterCoords,
+}) => {
   useEffect(() => {
     const setCoords = (position) => {
       const { latitude, longitude } = position.coords;
-      setLat(latitude);
-      setLng(longitude);
+      setMapCenterCoords(latitude, longitude);
     };
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setCoords, function () {
@@ -21,12 +24,18 @@ const MapCont = ({ isAddEvent, openModal, markers }) => {
   }, []);
 
   const GetClickedPosition = () => {
-    const map = useMapEvents({
+    useMapEvents({
       click: (e) => {
         openModal(e.latlng.lat, e.latlng.lng);
       },
     });
     return <div></div>;
+  };
+
+  const Recenter = () => {
+    const map = useMap();
+    map.flyTo([centerLat, centerLng], 10);
+    return null;
   };
 
   return (
@@ -37,6 +46,7 @@ const MapCont = ({ isAddEvent, openModal, markers }) => {
       style={{ height: "96vh" }}
     >
       {isAddEvent && <GetClickedPosition />}
+      <Recenter lat={centerLat} lng={centerLng} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

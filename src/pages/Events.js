@@ -13,6 +13,8 @@ const Events = () => {
   const [clickedLng, setClickedLng] = useState(null);
   const [show, setShow] = useState(false);
   const [markers, setMarker] = useState([]);
+  const [centerLat, setCenterLat] = useState(14.4484);
+  const [centerLng, setCenterLng] = useState(79.9888);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,7 +32,14 @@ const Events = () => {
     setMarker([...markers, ...ele]);
   };
 
-  
+  const filterMarkerHandler = (ele) => {
+    setMarker(ele);
+  };
+
+  const setMapCenterCoords = (lat, lng) => {
+    setCenterLat(lat);
+    setCenterLng(lng);
+  };
 
   useEffect(() => {
     const getAllEvents = async () => {
@@ -60,7 +69,10 @@ const Events = () => {
       <div className="container-fluid " style={{ marginTop: "60px" }}>
         <div className="row pb-4">
           <div className="col-lg-4 aside-container">
-            <Filterevents />
+            <Filterevents
+              filterMarkerHandler={filterMarkerHandler}
+              setMapCenterCoords={setMapCenterCoords}
+            />
             <div className="text-center " id="add-new-event">
               <button
                 type="button"
@@ -86,6 +98,9 @@ const Events = () => {
               isAddEvent={addEvent}
               openModal={openModal}
               markers={markers}
+              centerLat={centerLat}
+              centerLng={centerLng}
+              setMapCenterCoords={setMapCenterCoords}
             />
           </div>
         </div>

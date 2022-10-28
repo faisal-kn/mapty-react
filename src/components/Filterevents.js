@@ -3,9 +3,10 @@ import { Tab, Tabs } from "react-bootstrap";
 
 import axios from "axios";
 
-const Filterevents = () => {
+const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
   const [key, setKey] = useState("hobbies");
   const [hobby, setHobby] = useState("Games");
+  const [city, setCity] = useState("");
 
   const hobbyEventHandler = async () => {
     try {
@@ -18,11 +19,24 @@ const Filterevents = () => {
         },
       };
       const res = await axios(options);
-      console.log(res);
-      data.data.eventByHobby.forEach((ele) => {
-        createMarker(ele);
-      });
-      console.log(data);
+      if (res.data.status === "success") {
+        filterMarkerHandler(res.data.data.eventByHobby);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const forwardGeocodeHandler = async () => {
+    try {
+      const string = `http://api.positionstack.com/v1/forward?access_key=fc9a1ebd02ce67ca55a38e4143527ec3&query=${city}`;
+      const options = {
+        url: string,
+        method: "GET",
+      };
+      const res = await axios(options);
+      const { latitude, longitude } = res.data.data[0];
+      setMapCenterCoords(latitude, longitude);
     } catch (err) {
       console.log(err);
     }
@@ -84,12 +98,14 @@ const Filterevents = () => {
                           id="lat"
                           name="firstname"
                           placeholder="city name"
+                          value={city}
+                          onChange={(e) => setCity(e.target.value)}
                         />
                       </div>
                     </div>
                     <button
                       className="btn btn-outline-success mt-4"
-                      id="thirdButton"
+                      onClick={forwardGeocodeHandler}
                       type="submit"
                     >
                       Find
