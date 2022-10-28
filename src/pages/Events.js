@@ -4,6 +4,7 @@ import Filterevents from "../components/Filterevents";
 import PopularEvents from "../components/PopularEvents";
 import AddEvent from "../components/AddEvent";
 import MapCont from "../components/MapCont";
+import "../css/map.css";
 
 import axios from "axios";
 
@@ -15,6 +16,7 @@ const Events = () => {
   const [markers, setMarker] = useState([]);
   const [centerLat, setCenterLat] = useState(14.4484);
   const [centerLng, setCenterLng] = useState(79.9888);
+  const [events, setEvents] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -56,6 +58,7 @@ const Events = () => {
 
         if (res.data.status === "success") {
           addMarkerHandler(res.data.data.events);
+          setEvents(res.data.data.events);
         }
       } catch (err) {
         console.log(err);
@@ -83,7 +86,7 @@ const Events = () => {
                 Create Event
               </button>
             </div>
-            <PopularEvents />
+            <PopularEvents events={events} />
           </div>
           <AddEvent
             lat={clickedLat}

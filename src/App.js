@@ -13,7 +13,6 @@ function App() {
   const [username, setUsername] = useState("");
 
   const logHandler = (state, id, username) => {
-    console.log(username, id);
     setLogState(state);
     setId(id);
     setUsername(username);

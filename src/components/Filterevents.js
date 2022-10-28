@@ -41,6 +41,7 @@ const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
       console.log(err);
     }
   };
+  
   return (
     <div>
       <div className="row first-row">
