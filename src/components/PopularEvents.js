@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
 import footballImage from "../images/1.jpg";
 
@@ -7,25 +7,24 @@ const PopularEvents = ({ events }) => {
   const [totalPage, setTotalPage] = useState(1);
   const [renderedEvents, setRenderedEvents] = useState([]);
 
-  const renderPopularEvents = (
-    maxElement,
-    currentPage,
-    maxPerPage,
-    data = []
-  ) => {
-    const start = (currentPage - 1) * maxPerPage;
-    let end = start + maxPerPage;
-    if (end > maxElement) {
-      end = maxElement;
-    }
-    const temp = events.filter((event, i) => {
-      if (i >= start && i < end) {
-        return true;
+  const renderPopularEvents = useCallback(
+    (maxElement, currentPage, maxPerPage, data = []) => {
+      const start = (currentPage - 1) * maxPerPage;
+      let end = start + maxPerPage;
+      console.log(start, " ", end, " ", maxElement);
+      if (end > maxElement) {
+        end = maxElement;
       }
-      return false;
-    });
-    setRenderedEvents(temp);
-  };
+      const temp = events.filter((event, i) => {
+        if (i >= start && i < end) {
+          return true;
+        }
+        return false;
+      });
+      setRenderedEvents(temp);
+    },
+    [events]
+  );
 
   useEffect(() => {
     const maxElement = events.length;
@@ -34,8 +33,8 @@ const PopularEvents = ({ events }) => {
       const totalPage = Math.ceil(maxElement / maxPerPage);
       setTotalPage(totalPage);
     }
-    renderPopularEvents(maxElement, 1, maxPerPage, events);
-  }, [events]);
+    renderPopularEvents(events.length, currentPage, 2, events);
+  }, [events, currentPage, renderPopularEvents]);
 
   const leftEventHandler = (e) => {
     if (currentPage > 1) {
@@ -43,7 +42,6 @@ const PopularEvents = ({ events }) => {
     } else if (currentPage === 1) {
       setCurrentPage(totalPage);
     }
-    renderPopularEvents(events.length, currentPage, 2, events);
   };
 
   const rightEventHandler = (e) => {
@@ -52,8 +50,8 @@ const PopularEvents = ({ events }) => {
     } else if (currentPage === totalPage) {
       setCurrentPage(1);
     }
-    renderPopularEvents(events.length, currentPage, 2, events);
   };
+
   return (
     <div className="row second-row mt-2">
       <div className="col">
