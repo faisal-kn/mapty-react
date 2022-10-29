@@ -4,7 +4,6 @@ import { Tab, Tabs } from "react-bootstrap";
 import axios from "axios";
 
 const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
-  const [key, setKey] = useState("hobbies");
   const [hobby, setHobby] = useState("Games");
   const [city, setCity] = useState("");
 
@@ -41,13 +40,13 @@ const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
       console.log(err);
     }
   };
-  
+
   return (
     <div>
       <div className="row first-row">
         <div className="col">
           <div className="card">
-            <div className="card-body" style={{ height: "320px" }}>
+            <div className="card-body" style={{ height: "30vh" }}>
               <h5 className="card-title">Filter events</h5>
               <span className="card-text">
                 <Tabs

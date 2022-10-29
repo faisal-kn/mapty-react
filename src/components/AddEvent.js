@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal} from "react-bootstrap";
 import AuthContext from "../context/auth-context";
 import axios from "axios";
 

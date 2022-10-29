@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
+import footballImage from "../images/1.jpg";
 
 const PopularEvents = ({ events }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +35,7 @@ const PopularEvents = ({ events }) => {
       setTotalPage(totalPage);
     }
     renderPopularEvents(maxElement, 1, maxPerPage, events);
-  }, []);
+  }, [events]);
 
   const leftEventHandler = (e) => {
     if (currentPage > 1) {
@@ -58,16 +59,16 @@ const PopularEvents = ({ events }) => {
       <div className="col">
         <div className="card">
           <div className="cb">
-            <div className="card-body" style={{ height: "530px" }}>
+            <div className="card-body" style={{ height: "56vh" }}>
               <h5 className="card-title text-center">CURRENT POPULAR EVENTS</h5>
               <div id="popular-events">
                 {renderedEvents.map((event, i) => {
                   return (
-                    <div key={i}>
+                    <div key={i} style={{ height: "50%" }}>
                       <div className="row">
                         <div className="col d-flex align-items-center">
                           <img
-                            src={`uploads/${event.photo}`}
+                            src={footballImage}
                             width="222"
                             height="125"
                             alt="img of event"
@@ -76,15 +77,16 @@ const PopularEvents = ({ events }) => {
                         </div>
                         <div className="col">
                           <span>{event.date.substring(0, 10)}</span>
-                          <p style={{ fontSize: "14px" }}>${event.name}</p>
+                          <p style={{ fontSize: "14px" }}>{event.name}</p>
                           <h5 style={{ fontSize: "14px" }}>
-                            {`${event.location[0]}, ${event.location[1]}`}
+                            {`${event.location[0].toFixed(
+                              3
+                            )}, ${event.location[1].toFixed(3)}`}
                           </h5>
                           <p style={{ fontSize: "14px" }}>
-                            1 attendee -
                             <span style={{ color: "blue" }}>
                               {" "}
-                              ${event.totalSpot} spots left
+                              {event.totalSpot} spots left
                             </span>
                           </p>
                           <a href={`/events/${event._id}`}>
@@ -119,13 +121,17 @@ const PopularEvents = ({ events }) => {
                   }}
                 >
                   <div id="left-btn" onClick={leftEventHandler}>
-                    <AiFillLeftCircle />
+                    <AiFillLeftCircle
+                      style={{ fontSize: "28px", paddingRight: "5px" }}
+                    />
                   </div>
-                  <span id="page">1</span>
+                  <span id="page">{currentPage}</span>
                   <pre> </pre>of<pre> </pre>
                   <span id="max-page">{totalPage}</span>
                   <div id="right-btn" onClick={rightEventHandler}>
-                    <AiFillRightCircle />
+                    <AiFillRightCircle
+                      style={{ fontSize: "28px", paddingLeft: "5px" }}
+                    />
                   </div>
                 </div>
               </div>
