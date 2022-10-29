@@ -8,23 +8,12 @@
   height: 100vh;
 }
 
-.aside-container {
-}
-
 .cb {
-  /* height: 10vh; */
   display: flex;
 }
 
 .image1 {
   border-radius: 20px;
-}
-
-.first-row {
-  /* background-color: rgb(195, 199, 202); */
-}
-
-.second-row {
 }
 
 .pagination-container {
