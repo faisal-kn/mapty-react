@@ -6,6 +6,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Events from "./pages/Events";
 import AuthContext from "./context/auth-context";
+import Home from "./pages/Home";
+import Aboutus from "./pages/AboutUs";
+import OurTeam from "./pages/OurTeam";
+import ContactUs from "./pages/Contactus";
+import Footer from "./components/Footer";
+import NavBar from "./components/Navbar";
 
 function App() {
   const [logState, setLogState] = useState(false);
@@ -27,6 +33,7 @@ function App() {
       }}
     >
       <div className="App">
+          <NavBar/>
         <Routes>
           <Route
             path="/login"
@@ -34,9 +41,16 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/events" element={<Events />} />
+          <Route path='/' element={<Home />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/ourteam" element={<OurTeam />} />
+          <Route path="/contactus" element={<ContactUs/>}/>
         </Routes>
+          <Footer/>
       </div>
     </AuthContext.Provider>
+    // <Aboutus/>
+    // <OurTeam/>
   );
 }
 
