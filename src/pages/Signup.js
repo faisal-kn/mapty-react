@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "../css/signup.module.css";
+import { Alert } from "react-bootstrap";
+
 const Signup = ({ logStateHandler }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +22,11 @@ const Signup = ({ logStateHandler }) => {
     Random_meetups: false,
     Hangouts: false,
   });
-
+  const [alert, setAlert] = useState({
+    message: "",
+    type: "",
+  });
+  const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +71,11 @@ const Signup = ({ logStateHandler }) => {
     const mainbox1 = document.getElementById("mainbox");
     const altbox1 = document.getElementById("altbox");
     if (password !== confirmPassword) {
-      // showAlert("error", "Confirm password do not match");
+      setAlert({
+        message: "Passwords do not match",
+        type: "danger",
+      });
+      setShow(true);
       return;
     }
 
@@ -106,6 +116,15 @@ const Signup = ({ logStateHandler }) => {
 
   return (
     <div className={styles.main_div}>
+      {show && (
+        <Alert
+          varient={alert.danger}
+          onClose={() => setShow(false)}
+          dismissible
+        >
+          {alert.message}
+        </Alert>
+      )}
       <div className={styles.page}>
         <div className={styles.container}>
           <h1 className={styles.heading}>Create your account</h1>

@@ -1,7 +1,5 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import {Button, Card} from 'react-bootstrap'
-import { FaGithub } from "react";
 
 <script
   src="https://kit.fontawesome.com/5b8bafe0af.js"
