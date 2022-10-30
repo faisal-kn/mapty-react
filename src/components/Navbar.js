@@ -1,28 +1,33 @@
-import React from "react";
+import { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Navbar.css";
 import { Link } from "react-router-dom";
+import Logo from "../images/logo.png";
+import AuthContext from "../context/auth-context";
 
-function header() {
+function Header() {
+  const ctx = useContext(AuthContext);
+
   return (
     <div>
       {" "}
       <nav
         class="navbar navbar-expand-lg navbar-light position"
-        style={{ backgroundColor: "bisque" }}
+        style={{ backgroundColor: "bisque", padding: "10px" }}
       >
         <div class="nav-logo">
           <a href="/">
             <img
-              src="project-app\public\logo.png"
+              src={Logo}
               class="img-fluid"
               alt="logo"
+              style={{ marginLeft: "15px" }}
             />
           </a>
         </div>
-        <a class="navbar-brand" style={{ paddingLeft: "20px" }} href="/">
+        <Link class="navbar-brand" style={{ paddingLeft: "20px" }} to="/">
           Mapty
-        </a>
+        </Link>
         <button
           class="navbar-toggler"
           type="button"
@@ -38,63 +43,47 @@ function header() {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mg-lg-0 pt-1">
             <li class="nav-item active">
-              <a class="nav-link" href="/">
+              <Link class="nav-link" to="/">
                 Home<span class="sr-only"></span>
-              </a>
+              </Link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/events">
-                Events
-              </a>
+              {ctx.isLoggedIn && (
+                <Link to="/events" class="nav-link">
+                  Events
+                </Link>
+              )}
+              {!ctx.isLoggedIn && (
+                <Link to="/login" class="nav-link">
+                  Login
+                </Link>
+              )}
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/aboutus">
+              <Link class="nav-link" to="aboutus">
                 About us
-              </a>
+              </Link>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/contactus">
-                Contact us
-              </a>
+              {ctx.isLoggedIn && (
+                <Link class="nav-link" to="contactus">
+                  Contact us
+                </Link>
+              )}
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="/newTeam">
+              <Link class="nav-link" to="ourteam">
                 Our team
-              </a>
+              </Link>
             </li>
-
-            {/* <div class="nav-logo" style={{paddingLeft: '10px', paddingRight: '10px'}}>
-            <a href="/userprofile"
-              ><img
-                src="/uploads/<%= user.photo %>"
-                class="img-fluid"
-                alt="icon"
-            /></a>
-          </div>
-         */}
           </ul>
         </div>
       </nav>
-      <script
-        src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossOrigin="anonymous"
-      ></script>
-      <script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossOrigin="anonymous"
-      ></script>
-      <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossOrigin="anonymous"
-      ></script>
     </div>
   );
 }
 
-export default header;
+export default Header;

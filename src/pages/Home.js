@@ -1,189 +1,334 @@
-import Container from 'react-bootstrap/Container';
-import 'bootstrap/dist/css/bootstrap.min.css';
-// import TwoCards from './components/TwoCards';
-import TwoCards from '../components/TwoCards';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
-import Typewriter from 'typewriter-effect';
-// import {Button, Card} from 'react-bootstrap'
-// import React, { Component } from 'react';
-// import { render } from 'react-dom';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
-import "../css/home.css"
-import sports from '../images/sports.jpg'
-import chess from '../images/chess.jpg'
-import marathon from '../images/marathon.jpg'
+import Container from "react-bootstrap/Container";
+import "bootstrap/dist/css/bootstrap.min.css";
+import TwoCards from "../components/TwoCards";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Typewriter from "typewriter-effect";
+import "../css/home.css";
+import sports from "../images/sports.jpg";
+import chess from "../images/chess.jpg";
+import marathon from "../images/marathon.jpg";
 
-import FlipCard from '../components/FlipCard';
-import StoryCard from '../components/StoryCard';
+import FlipCard from "../components/FlipCard";
+import StoryCard from "../components/StoryCard";
 
 function Home() {
+  useEffect(() => {
+    AOS.init({ duration: 2500 });
+  });
 
-
-
-useEffect(()=>{
-    AOS.init({ duration : 2500});
-})
-
-return (
+  return (
     <>
-        <div style={{fontSize:"50px", padding:"50px" , textAlign:"center"}}>
-            <Typewriter
-            onInit={(typewriter)=>{
-                typewriter
-                .pauseFor(500)
-                .typeString("Connect")
-                .pauseFor(2000)
-                .deleteAll()
-                .typeString("Learn")
-                .pauseFor(2000)
-                .deleteAll()
-                .typeString("Share")
-                .pauseFor(2000)
-                .deleteAll()
-                .typeString("Mapty")
-                .start();
-            }}
-            />
-        </div>
+      <div
+        style={{
+          fontSize: "50px",
+          paddingTop: "40px",
+          textAlign: "center",
+          fontStyle: "oblique",
+          fontWeight: "500",
+        }}
+      >
+        <Typewriter
+          onInit={(typewriter) => {
+            typewriter
+              .pauseFor(300)
+              .typeString("Connect")
+              .pauseFor(1000)
+              .deleteAll()
+              .typeString("Learn")
+              .pauseFor(2000)
+              .deleteAll()
+              .typeString("Share")
+              .pauseFor(2000)
+              .deleteAll()
+              .typeString("Mapty - Where everything happens")
+              .start();
+          }}
+        />
+      </div>
 
-        <div style={{paddingTop:"80px"}}>
-            <div style={{backgroundImage:"https://secure.meetupstatic.com/next/images/blobs/green-blob.svg"}}>
-                <TwoCards h1="Welcome to Mapty" p="Our vision for MAPTY is a one place platform for pursue all of your hobbies. Make new friends, meetup
+      <div style={{ paddingTop: "80px" }}>
+        <div
+          style={{
+            backgroundImage:
+              "https://secure.meetupstatic.com/next/images/blobs/green-blob.svg",
+          }}
+        >
+          <TwoCards
+            h1="Welcome to Mapty"
+            p="Our vision for MAPTY is a one place platform for pursue all of your hobbies. Make new friends, meetup
                     with people who share your hobbies and explore the world your way. we hope you make the most of our
-                    website and make exciting and unforgettable memories. How do we make this possible you ask?" h2="Your destination for an eventfull life." link="https://secure.meetupstatic.com/next/images/shared/online_events.svg?w=640" a="Meet out team!" buttxt="Get Started!"/>
-            </div>
+                    website and make exciting and unforgettable memories. How do we make this possible you ask?"
+            h2="Your destination for an eventfull life."
+            link="https://secure.meetupstatic.com/next/images/shared/online_events.svg?w=640"
+            a="Meet out team!"
+            buttxt="Get Started!"
+          />
         </div>
+      </div>
 
-        <div className="container px-50px">
+      <div className="container px-50px">
         <div className="row g-3">
-            <div data-aos="fade-right" className="col-12 col-md-4">
-                <FlipCard src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256" h2="Pursue your hobbies" p="Find what you enjoy most, meet others who love it, make new friends. Live your life restrictionless!"/>
-            </div>
+          <div data-aos="fade-right" className="col-12 col-md-4">
+            <FlipCard
+              src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
+              h2="Pursue your hobbies"
+              p="Find what you enjoy most, meet others who love it, make new friends. Live your life restrictionless!"
+            />
+          </div>
 
-            <div data-aos="fade-zoom-in" data-aos-duration="2000" className="col-12 col-md-4">
-                <FlipCard src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256" h2="Create your event" p="The best thing about MAPTY is that you are no longer a side character living in someone else's world. Create your own events and live your life to the fullest."/>
-            </div>
+          <div
+            data-aos="fade-zoom-in"
+            data-aos-duration="2000"
+            className="col-12 col-md-4"
+          >
+            <FlipCard
+              src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"
+              h2="Create your event"
+              p="The best thing about MAPTY is that you are no longer a side character living in someone else's world. Create your own events and live your life to the fullest."
+            />
+          </div>
 
-        <div data-aos="fade-left" className="col-12 col-md-4">
-                <FlipCard src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256 " h2="Friends" p="Too shy to attend events on your own? dont worry we also have support joining events with friends or
+          <div data-aos="fade-left" className="col-12 col-md-4">
+            <FlipCard
+              src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256 "
+              h2="Friends"
+              p="Too shy to attend events on your own? dont worry we also have support joining events with friends or
                 meetup with strangers add as friends and there you go... having a blast with your new buddies at events
-                that you all enjoy."/>
+                that you all enjoy."
+            />
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
 
-        <div data-aos="fade-zoom-in" data-aos-duration="2000"  className="container mainbox" style={{padding: "50px"}}>
+      <div
+        data-aos="fade-zoom-in"
+        data-aos-duration="2000"
+        className="container mainbox"
+        style={{ padding: "50px" }}
+      >
         <div className="row">
-        <div data-aos="fade-right" className="col-12 col-md-6 subbox1">
-            <h3 style={{textAlign:"center"}}>Search for events</h3>
+          <div data-aos="fade-right" className="col-12 col-md-6 subbox1">
+            <h3 style={{ textAlign: "center" }}>Search for events</h3>
             <form>
-            <div className="row">
-                <div style={{padding:"20px"}} className="form-group col-lg-6 col-sm-12">
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+              <div className="row">
+                <div
+                  style={{ padding: "20px" }}
+                  className="form-group col-lg-6 col-sm-12"
+                >
+                  <input
+                    type="email"
+                    className="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                  />
                 </div>
-                <div style={{padding:"20px"}} className="form-group col-lg-6 col-sm-12">
-                <input type="password" className="form-control" id="exampleInputPassword1"/>
+                <div
+                  style={{ padding: "20px" }}
+                  className="form-group col-lg-6 col-sm-12"
+                >
+                  <input
+                    type="password"
+                    className="form-control"
+                    id="exampleInputPassword1"
+                  />
                 </div>
-            </div>
-            <div className="row text-center">
+              </div>
+              <div className="row text-center">
                 <div className="col-lg-12">
-                <button type="submit" className="btn btn-primary w-75 submit-button">Search</button>
+                  <button
+                    type="submit"
+                    className="btn btn-primary w-75 submit-button"
+                  >
+                    Search
+                  </button>
                 </div>
-            </div>
+              </div>
             </form>
-        </div>
-        <div className="col-12 col-md-6 subbox2">
-            <h3 className="texts" style={{fontSize: "25px"}}>Most popular hobbies on our platform</h3>
+          </div>
+          <div className="col-12 col-md-6 subbox2">
+            <h3 className="texts" style={{ fontSize: "25px" }}>
+              Most popular hobbies on our platform
+            </h3>
             <div className="col">
-            <div className="row">
+              <div className="row">
                 <div className="bottons">
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-right">Cricket</button>
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-left">Mixer</button>
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-right">Party</button>
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-left">Arts gathering</button>
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-right">Hangouts</button>
-                <button type="button" className="btn btn-outline-secondary button" data-aos="fade-left">Basketball</button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-right"
+                  >
+                    Cricket
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-left"
+                  >
+                    Mixer
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-right"
+                  >
+                    Party
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-left"
+                  >
+                    Arts gathering
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-right"
+                  >
+                    Hangouts
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary button"
+                    data-aos="fade-left"
+                  >
+                    Basketball
+                  </button>
                 </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
 
-    
-
-    <div style={{padding:"50px"}}>
-    <div class="container text-center" style={{padding: "50px"}}>
-        <h1 style={{padding:"50px"}}>Some popular MAPTY stories</h1>
-        <div class="row g-3">
-
-        <div data-aos="fade-zoom-in" data-aos-duration="3000"  class="col-12 col-md-4">
-            <StoryCard h5="IIITS Sports fest" src={sports} p="The lastest sports fest held in IIIT sri city was posted as an event on mapty. An
+      <div style={{ padding: "50px" }}>
+        <div class="container text-center" style={{ padding: "50px" }}>
+          <h1 style={{ padding: "50px" }}>Some popular MAPTY stories</h1>
+          <div class="row g-3">
+            <div
+              data-aos="fade-zoom-in"
+              data-aos-duration="3000"
+              class="col-12 col-md-4"
+            >
+              <StoryCard
+                h5="IIITS Sports fest"
+                src={sports}
+                p="The lastest sports fest held in IIIT sri city was posted as an event on mapty. An
                     increase in attendense of this event compared to its predecessors has been observed therefore not only
-                    has it increased the events popularity, it has also taken part in making the fest easily organizable."/>
-        </div>
-        <div data-aos="fade-zoom-in" data-aos-duration="3000"  class="col-12 col-md-4">
-            <StoryCard h5="Hyderabad runners marathon" src={marathon} p="Another popular event that MAPTY has taken a crucial role in making it a sucess is
+                    has it increased the events popularity, it has also taken part in making the fest easily organizable."
+              />
+            </div>
+            <div
+              data-aos="fade-zoom-in"
+              data-aos-duration="3000"
+              class="col-12 col-md-4"
+            >
+              <StoryCard
+                h5="Hyderabad runners marathon"
+                src={marathon}
+                p="Another popular event that MAPTY has taken a crucial role in making it a sucess is
                 the 10k marathon that took place in hyderabad. Drawing a few hundred participants and many more
                 spectators and supporters the event was also shared heavily on social media. This is a prime example of
-                how our team wants MAPTY to be utilised"/>
-        </div>
-        <div data-aos="fade-zoom-in" data-aos-duration="3000"  class="col-12 col-md-4" >
-            <StoryCard h5="Mumbai Chess championship" src={chess} p="One of the most popular events MAPTY was a part of was the tata steel chess masters
+                how our team wants MAPTY to be utilised"
+              />
+            </div>
+            <div
+              data-aos="fade-zoom-in"
+              data-aos-duration="3000"
+              class="col-12 col-md-4"
+            >
+              <StoryCard
+                h5="Mumbai Chess championship"
+                src={chess}
+                p="One of the most popular events MAPTY was a part of was the tata steel chess masters
                 tournament that waS held in Mumbai. Although the affect MAPTY has brought to an event of this scale is
                 probably not huge, we take pride in tha fact that MAPTY has achieved such results in the few months it
-                has been up."/>
-        </div>
-        </div>
-        </div>
-        </div>
-
-
-
-
-
-        <Container style={{}}>
-    <div className="container" style={{marginBottom: "40px"}}>
-      <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
-        <ol className="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner ">
-          <div className="carousel-item active">
-            <img className="d-block w-100 img-fluid" style={{height: "700px", width: "100px"}}
-              src="https://c1.wallpaperflare.com/preview/8/498/513/still-items-things-paint.jpg"
-              alt="First slide" />
-          </div>
-          <div className="carousel-item">
-            <img className="d-block w-100 img-fluid" style={{height: "700px", width: "100px"}}
-              src="https://c1.wallpaperflare.com/preview/287/573/247/vintage-old-camera-canon.jpg"
-              alt="Second slide"/>
-          </div>
-          <div className="carousel-item img-fluid">
-            <img className="d-block w-100" style={{height: "700px", width: "100px"}}
-              src="https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg"
-              alt="Third slide"/>
+                has been up."
+              />
+            </div>
           </div>
         </div>
-        <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span className="sr-only">Previous</span>
-        </a>
-        <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
-          <span className="sr-only">Next</span>
-        </a>
       </div>
-    </div>
 
-    </Container>
+      <Container style={{}}>
+        <div className="container" style={{ marginBottom: "40px" }}>
+          <div
+            id="carouselExampleIndicators"
+            className="carousel slide"
+            data-ride="carousel"
+          >
+            <ol className="carousel-indicators">
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="0"
+                className="active"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="1"
+              ></li>
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="2"
+              ></li>
+            </ol>
+            <div className="carousel-inner ">
+              <div className="carousel-item active">
+                <img
+                  className="d-block w-100 img-fluid"
+                  style={{ height: "700px", width: "100px" }}
+                  src="https://c1.wallpaperflare.com/preview/8/498/513/still-items-things-paint.jpg"
+                  alt="First slide"
+                />
+              </div>
+              <div className="carousel-item">
+                <img
+                  className="d-block w-100 img-fluid"
+                  style={{ height: "700px", width: "100px" }}
+                  src="https://c1.wallpaperflare.com/preview/287/573/247/vintage-old-camera-canon.jpg"
+                  alt="Second slide"
+                />
+              </div>
+              <div className="carousel-item img-fluid">
+                <img
+                  className="d-block w-100"
+                  style={{ height: "700px", width: "100px" }}
+                  src="https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg"
+                  alt="Third slide"
+                />
+              </div>
+            </div>
+            <a
+              className="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                className="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="sr-only">Previous</span>
+            </a>
+            <a
+              className="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                className="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span className="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </Container>
     </>
-    );
+  );
 }
 
 export default Home;

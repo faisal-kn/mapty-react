@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Modal} from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import AuthContext from "../context/auth-context";
 import axios from "axios";
 
@@ -17,6 +17,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
   const [hobby, setHobby] = useState("Games");
   const [totalSpot, setTotalSpot] = useState(0);
   const [description, setDescription] = useState("");
+  const [file, setFile] = useState(null);
 
   const ctx = useContext(AuthContext);
 
@@ -24,8 +25,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
     e.preventDefault();
     try {
       const form = new FormData();
-      //   console.log(photo);
-      //   form.append("photo", photo.files[0]);
+      form.append("photo", file);
       form.append("name", name);
       form.append("date", date);
       form.append("location", [lat, lng]);
@@ -168,7 +168,13 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
               </div>
               <div>
                 <label>Upload Event Pictures</label>
-                <input type="file" name="photo" id="photo" />
+                <input
+                  type="file"
+                  name="photo"
+                  id="photo"
+                  onChange={(e) => setFile(e.target.files[0])}
+                  required
+                />
               </div>
             </div>
           </Modal.Body>

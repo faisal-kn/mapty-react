@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
-import footballImage from "../images/1.jpg";
 
 const PopularEvents = ({ events }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -61,12 +60,13 @@ const PopularEvents = ({ events }) => {
               <h5 className="card-title text-center">CURRENT POPULAR EVENTS</h5>
               <div id="popular-events">
                 {renderedEvents.map((event, i) => {
+                  console.log(event);
                   return (
                     <div key={i} style={{ height: "50%" }}>
                       <div className="row">
                         <div className="col d-flex align-items-center">
                           <img
-                            src={footballImage}
+                            src={`/uploads/${event.photo}`}
                             width="222"
                             height="125"
                             alt="img of event"
