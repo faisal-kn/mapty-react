@@ -1,38 +1,72 @@
-import React from 'react';
-import '../css/Contactus.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
+import "../css/Contactus.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import Footer from './Footer';
 // import Navbar from './Navbar';
-
+import Alert from "../components/Alert";
 
 function Contactus() {
-    return (
-        <div className="main">
-            {/* <Footer/> */}
-            
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [issue, setIssue] = useState(false);
+  const [alert, setAlert] = useState({
+    message: "",
+    type: "",
+  });
+  const [show, setShow] = useState(false);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!name || !email || !message) {
+      setAlert({
+        message: "Please fill all the fields",
+        type: "error",
+      });
+      setShow(true);
+      return;
+    }
+    if (email.indexOf("@") < 0) {
+      setAlert({
+        message: "Invalid email",
+        type: "error",
+      });
+      setShow(true);
+      return;
+    }
+    console.log(name, email, message, issue);
+  };
+  return (
+    <div className="main">
+      {/* <Footer/> */}
+
       <div className="details">
         <h2 className="alt-heaing">Contact Form</h2>
         <br />
-        <form>
+        <form onSubmit={submitHandler}>
           <div className="form-group">
             <label for="exampleInputEmail1">Name </label>
             <input
-              type="email"
+              type="text"
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="form-group">
             <label for="exampleInputPassword1">Email </label>
             <input
-              type="password"
+              type="email"
               className="form-control"
               id="exampleInputPassword1"
               placeholder="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
-          </div><br></br>
+          </div>
+          <br></br>
 
           <div className="form-group">
             <label for="exampleFormControlTextarea1">Message </label>
@@ -40,21 +74,31 @@ function Contactus() {
               className="form-control"
               id="exampleFormControlTextarea1"
               rows="3"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             ></textarea>
-          </div><br></br>
+          </div>
+          <br></br>
 
           <div className="form-check">
             <input
               type="checkbox"
               className="form-check-input"
               id="exampleCheck1"
+              value={issue}
+              onChange={(e) => setIssue(e.target.value)}
             />
-            <label className="form-check-label" for="exampleCheck1"
-              >Reporting an issue</label>
-          </div><br></br>
-          <button type="submit" className="btn btn-primary">Submit</button>
+            <label className="form-check-label" for="exampleCheck1">
+              Reporting an issue
+            </label>
+          </div>
+          <br></br>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
-      </div><br></br>
+      </div>
+      <br></br>
 
       <div className="text">
         <h1 className="heading">Contact Us</h1>
@@ -68,17 +112,16 @@ function Contactus() {
           website are more than welcome.
         </p>
         <p>
-          <strong
-            ><em>Details given will never be shared with anyone</em></strong
-          >
+          <strong>
+            <em>Details given will never be shared with anyone</em>
+          </strong>
         </p>
-            </div>
-            
-            
-{/* <Navbar/> */}
+        {show && (
+          <Alert message={alert.message} type={alert.type} setShow={setShow} />
+        )}
+      </div>
     </div>
   );
 }
-
 
 export default Contactus;

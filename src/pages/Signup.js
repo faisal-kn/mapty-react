@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
 import styles from "../css/signup.module.css";
-import image1 from "../images/signup1.jpg"
+import image1 from "../images/signup1.jpg";
+import Alert from "../components/Alert";
 
 const Signup = ({ logStateHandler }) => {
   const [email, setEmail] = useState("");
@@ -74,25 +74,37 @@ const Signup = ({ logStateHandler }) => {
     if (password !== confirmPassword) {
       setAlert({
         message: "Passwords do not match",
-        type: "danger",
+        type: "error",
       });
       setShow(true);
       return;
     }
 
     if (email.indexOf("@") < 0) {
-      // showAlert("error", "Please enter a Valid email.");
+      setAlert({
+        message: "Invalid email",
+        type: "error",
+      });
+      setShow(true);
       return;
     }
     if (password.length < 8) {
-      // showAlert("error", "Password must be at least 8 characters long");
+      setAlert({
+        message: "Password must be atleast 8 characters long",
+        type: "error",
+      });
+      setShow(true);
       return;
     }
     if (username && email && password && confirmPassword) {
       mainbox1.style.display = "none";
       altbox1.style.display = "flex";
     } else {
-      // showAlert("error", "Please fill all the fields");
+      setAlert({
+        message: "Please fill all the fields",
+        type: "error",
+      });
+      setShow(true);
       return;
     }
   };
@@ -118,13 +130,7 @@ const Signup = ({ logStateHandler }) => {
   return (
     <div className={styles.main_div}>
       {show && (
-        <Alert
-          varient={alert.danger}
-          onClose={() => setShow(false)}
-          dismissible
-        >
-          {alert.message}
-        </Alert>
+        <Alert message={alert.message} type={alert.type} setShow={setShow} />
       )}
       <div className={styles.page}>
         <div className={styles.container}>

@@ -1,4 +1,4 @@
-import Container from "react-bootstrap/Container";
+import { Container, Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TwoCards from "../components/TwoCards";
 import AOS from "aos";
@@ -251,82 +251,45 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className="container" style={{ marginBottom: "40px" }}>
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 img-fluid"
+              style={{ height: "700px", width: "100px" }}
+              src="https://c1.wallpaperflare.com/preview/8/498/513/still-items-things-paint.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>Share Your Creativity</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100 img-fluid"
+              style={{ height: "700px", width: "100px" }}
+              src="https://c1.wallpaperflare.com/preview/287/573/247/vintage-old-camera-canon.jpg"
+              alt="Second slide"
+            />
 
-      <Container style={{}}>
-        <div className="container" style={{ marginBottom: "40px" }}>
-          <div
-            id="carouselExampleIndicators"
-            className="carousel slide"
-            data-ride="carousel"
-          >
-            <ol className="carousel-indicators">
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="0"
-                className="active"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="1"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="2"
-              ></li>
-            </ol>
-            <div className="carousel-inner ">
-              <div className="carousel-item active">
-                <img
-                  className="d-block w-100 img-fluid"
-                  style={{ height: "700px", width: "100px" }}
-                  src="https://c1.wallpaperflare.com/preview/8/498/513/still-items-things-paint.jpg"
-                  alt="First slide"
-                />
-              </div>
-              <div className="carousel-item">
-                <img
-                  className="d-block w-100 img-fluid"
-                  style={{ height: "700px", width: "100px" }}
-                  src="https://c1.wallpaperflare.com/preview/287/573/247/vintage-old-camera-canon.jpg"
-                  alt="Second slide"
-                />
-              </div>
-              <div className="carousel-item img-fluid">
-                <img
-                  className="d-block w-100"
-                  style={{ height: "700px", width: "100px" }}
-                  src="https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg"
-                  alt="Third slide"
-                />
-              </div>
-            </div>
-            <a
-              className="carousel-control-prev"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="prev"
-            >
-              <span
-                className="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Previous</span>
-            </a>
-            <a
-              className="carousel-control-next"
-              href="#carouselExampleIndicators"
-              role="button"
-              data-slide="next"
-            >
-              <span
-                className="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span className="sr-only">Next</span>
-            </a>
-          </div>
-        </div>
-      </Container>
+            <Carousel.Caption>
+              <h3>Capture your Creativity</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              style={{ height: "700px", width: "100px" }}
+              src="https://c1.wallpaperflare.com/preview/652/531/737/wood-aerial-background-beverage.jpg"
+              alt="Third slide"
+            />
+
+            <Carousel.Caption>
+              <h3>Let it inspire others</h3>
+            </Carousel.Caption>
+          </Carousel.Item>
+        </Carousel>
+      </div>
     </>
   );
 }
