@@ -16,14 +16,14 @@ function Header() {
         style={{ backgroundColor: "bisque", padding: "10px" }}
       >
         <div class="nav-logo">
-          <a href="/">
+          <Link to="/">
             <img
               src={Logo}
               class="img-fluid"
               alt="logo"
               style={{ marginLeft: "15px" }}
             />
-          </a>
+          </Link>
         </div>
         <Link class="navbar-brand" style={{ paddingLeft: "20px" }} to="/">
           Mapty
