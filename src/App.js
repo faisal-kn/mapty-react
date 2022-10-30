@@ -33,20 +33,23 @@ function App() {
       }}
     >
       <div className="App">
-          <NavBar/>
+        <NavBar />
         <Routes>
           <Route
             path="/login"
             element={<Login logStateHandler={logHandler} />}
           />
-          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/signup"
+            element={<Signup logStateHandler={logHandler} />}
+          />
           <Route path="/events" element={<Events />} />
-          <Route path='/' element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/ourteam" element={<OurTeam />} />
-          <Route path="/contactus" element={<ContactUs/>}/>
+          <Route path="/contactus" element={<ContactUs />} />
         </Routes>
-          <Footer/>
+        <Footer />
       </div>
     </AuthContext.Provider>
     // <Aboutus/>
