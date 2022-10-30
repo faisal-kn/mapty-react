@@ -45,10 +45,10 @@ function TwoCards(props) {
               </div>
             </div>
           </Col>
-          <Col className="col-12 col-md-6 p-3 bg-light text-center" style={{}}>
-            <div>
-              <img className="img-fluid rounded" alt="" src={props.link} />
-            </div>
+          <Col className="col-12 col-md-6 p-3 bg-light text-center" style={{display:"flex",justifyContent:"space-around",  allignItems:"center"}}>
+          
+              <img className="img-fluid rounded"  alt="" src={props.link} style={{height:"450px"}}/>
+         
           </Col>
         </Row>
       </Container>

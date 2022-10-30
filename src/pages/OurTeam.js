@@ -13,23 +13,23 @@ function Ourteam() {
     <div className="container py-5">
         <div className="container mb-5">
             <div className="py-5 text-center">
-                <h2 className="logoFont" id="header">Our Team</h2>
+                <h2 className="logoFont" style={{fontWeight: "600",fontSize:"50px"}} id="header">Our Team</h2>
             </div>
-            <div class="row justify-content-center align-items-stretch">
+            <div className="row justify-content-center align-items-stretch">
             <div data-aos="fade-right" className="m-4 col-lg-3 col-md-6 card shadow-6 py-2">
                 <OurTeamCard name="Faizal Khan" role="Devevloper" />
             </div>
             <div data-aos="fade-zoom-in" data-aos-duration="2000" className="m-4 col-lg-3 col-md-6 card shadow-6 py-2">
-                <OurTeamCard name="Faizal Khan" role="Devevloper" />
+                <OurTeamCard name="Sarat Chowdary" role="Devevloper" />
             </div>
             <div data-aos="fade-left" className="m-4 col-lg-3 col-md-6 card shadow-6 py-2">
-                <OurTeamCard name="Faizal Khan" role="Devevloper" />
+                <OurTeamCard name="Kartheek" role="Devevloper" />
             </div>
             <div data-aos="fade-right" className="m-4 col-lg-3 col-md-6 card shadow-6 py-2">
-                <OurTeamCard name="Faizal Khan" role="Devevloper" />
+                <OurTeamCard name="Yeshwanth" role="Devevloper" />
             </div>
             <div data-aos="fade-left" className="m-4 col-lg-3 col-md-6 card shadow-6 py-2">
-                <OurTeamCard name="Faizal Khan" role="Devevloper" />
+                <OurTeamCard name="Hari Teja" role="Devevloper" />
             </div>
             </div>
         </div>

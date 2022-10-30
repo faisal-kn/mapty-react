@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import TwoCards from "../components/TwoCards";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, Link } from "react";
 import Typewriter from "typewriter-effect";
 import "../css/home.css";
 import sports from "../images/sports.jpg";
@@ -283,7 +283,7 @@ function Home() {
                   alt="First slide"
                 />
               </div>
-              <div className="carousel-item">
+              <div className="carousel-item ">
                 <img
                   className="d-block w-100 img-fluid"
                   style={{ height: "700px", width: "100px" }}
