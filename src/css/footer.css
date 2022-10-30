@@ -1,5 +1,5 @@
 ol,
-.footerul{
+.footer{
   padding-left: 0 !important;
 }
 .container-footer {
@@ -96,22 +96,40 @@ background: #151414;
 .footer-widget-heading h3::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: 260px;  
+  /* left: 225px; 
+  At inspect screen correct position for underline  */
   bottom: -15px;
   height: 2px;
   width: 50px;
   background: #ff5e14;
 }
-.footer-widget ul li {
+
+.footer-widget ul{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  justify-content: space-evenly;
+  padding-left: 0px;
+  /* border: 2px solid white; */
+}
+
+.footer-widget ul div{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-widget ul div li {
   display: inline-block;
   /* float: left; */
-  width: 50%;
+  /* width: 50%; */
+  /* border: 2px solid white; */
   margin-bottom: 12px;
 }
-.footer-widget ul li a:hover {
+.footer-widget ul div li a:hover {
   color: #ff5e14;
 }
-.footer-widget ul li a {
+.footer-widget ul div li a {
   color: #878787;
   text-transform: capitalize;
 }
