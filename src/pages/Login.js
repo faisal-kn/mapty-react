@@ -3,6 +3,7 @@ import axios from "axios";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 
+import {Link} from "react-router-dom";
 import Spinner from "../components/Spinner";
 import styles from "../css/login.module.css";
 import { useNavigate } from "react-router-dom";
@@ -96,9 +97,9 @@ const Login = ({ logStateHandler }) => {
                 </form>
                 <div className={styles.copy}>
                   <button className={styles["login-btn"]}>
-                    <a href="/signup" className={styles["signup-link"]}>
+                    <Link to="/signup" className={styles["signup-link"]}>
                       Create Account
-                    </a>
+                    </Link>
                   </button>
                 </div>
               </div>

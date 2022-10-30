@@ -1,12 +1,13 @@
 import React from "react";
 import '../css/footer.css';
 import image1 from "../images/logo.png"; 
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import { img } from "react-bootstrap";
-// import { ImagfooterWidgetHeadinge } from "react-bootstrap";
-// import Button from 'react-bootstrap/Button';
+import {Link} from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "../context/auth-context";
 
 function Footer() {
+  const ctx = useContext(AuthContext);
+
     return (<footer class="footer-section">
   <div class="container-footer">
     <div class="footer-cta pt-4 pb-5"></div>
@@ -15,13 +16,13 @@ function Footer() {
         <div class="col-xl-4 col-lg-4 mb-50">
           <div class="footer-widget">
             <div class="footer-logo">
-              <a href="/">
+              <Link to="/">
                 <img
                   src={image1}
                   style={{ height:'25%', width:'25%', borderRadius:'5000px' }}
                   class="img-fluid"
                   alt="logo"
-              /></a>
+              /></Link>
             </div>
             <div class="footer-text">
               <p>
@@ -38,23 +39,24 @@ function Footer() {
               <h3>Useful Links</h3>
             </div>
             <ul className='footer'>
-              {/* <% if(user){ %> */}
 
-              <div>
-              <li><a href="/userprofile">User Profile</a></li>
-              {/* <% } else{ %> */}
-              <li><a href="/">Home</a></li>
-              <li><a href="/login">Login</a></li>
-              </div>
-
-              <div>
-              <li><a href="/signup">Sign up</a></li>
-              <li><a href="/events">Events</a></li>
-              <li><a href="/contactus">Contact Us</a></li>
-              </div>
+              {!ctx.isLoggedIn && (<div>
+              <li><Link to="/">Home</Link></li>
+              {/* <li><Link to="/contactus">Contact Us</Link></li>
+              <li><Link to="/aboutus">About Us</Link></li>
+              <li><Link to="/ourteam">Our Team</Link></li> */}
+              <li><Link to="/login">Login</Link></li>
+              <li><Link to="/signup">Sign up</Link></li>
+              <li><Link to="/adminportal">Admin Portal</Link></li>
+              </div>)}
               
-              {/* <li></li> */}
-              {/* <% } %> */}
+              {ctx.isLoggedIn && (<div>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/userprofile">User Profile</Link></li>
+              <li><Link to="/events">Events</Link></li>
+              <li><Link to="/adminportal">Admin Portal</Link></li>
+              </div>)}
+              
             </ul>
           </div>
         </div>
@@ -65,9 +67,9 @@ function Footer() {
             </div>
             <ul>
               <div>
-              <li><a href="/aboutus">About us</a></li>
-              <li><a href="/contactus">Contact us</a></li>
-              <li><a href="/newTeam">Teams</a></li>
+              <li><Link to="/aboutus">About us</Link></li>
+              <li><Link to="/contactus">Contact us</Link></li>
+              <li><Link to="/newTeam">Teams</Link></li>
               </div>
             </ul>
           </div>

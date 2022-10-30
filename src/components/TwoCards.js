@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -29,11 +30,11 @@ function TwoCards(props) {
               <div>
                 <p style={{ padding: "20px", fontSize: "large" }}>
                   {props.p}
-                  <a href="/newTeam" style={{ textDecoration: "none" }}>
+                  <Link to="/newTeam" style={{ textDecoration: "none" }}>
                     {props.a}
-                  </a>
+                  </Link>
                 </p>
-                <a href="/signup">
+                <Link to="/signup">
                   <button
                     style={{ margin: "20px", fontSize: "large" }}
                     className="btn btn-outline-secondary mt-4"
@@ -41,7 +42,7 @@ function TwoCards(props) {
                   >
                     {props.buttxt}
                   </button>
-                </a>
+                </Link>
               </div>
             </div>
           </Col>
