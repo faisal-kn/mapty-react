@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
 import styles from "../css/signup.module.css";
-import { Alert } from "react-bootstrap";
+import image1 from "../images/signup1.jpg"
 
 const Signup = ({ logStateHandler }) => {
   const [email, setEmail] = useState("");
@@ -140,7 +141,7 @@ const Signup = ({ logStateHandler }) => {
                   objectFit: "cover",
                   borderRadius: "15px 0 0 15px",
                 }}
-                src="/assets/signup1.jpg"
+                src={image1}
                 alt=""
               />
             </div>

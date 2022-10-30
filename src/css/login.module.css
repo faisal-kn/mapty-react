@@ -3,17 +3,16 @@
   height: 100vh;
   display: flex;
   background-color: black;
+  align-items: center;
+  justify-content: center;
   /* border: 2px solid white; */
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 70%;
   height: 69%;
-  align-self: center;
-  justify-content: center;
-  align-items: center;
   /* border: 2px solid white; */
 }
 
@@ -21,7 +20,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 85%;
+  width: 100%;
   background-color: rgb(54, 54, 54);
   border: 2px solid lightblue;
   border-radius: 5px;
@@ -31,8 +30,11 @@
 .box1 {
   display: flex;
   height: 100%;
+  width: 45%;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  /* border: 2px solid blue; */
   /* align-items: center; */
 }
 
@@ -54,27 +56,31 @@
   width: 80%;
   justify-content: space-evenly;
   align-items: center;
+  /* border: 2px solid white; */
 }
 
 .details {
   background-color: rgb(15, 15, 15);
+  width: 70%;
+  /* background-color: aqua; */
   border-radius: 5px;
   padding: 15px;
-  margin: 30px;
+  margin: 20px;
   font-size: 15px;
   opacity: 0.8;
+  /* border: 2px solid white; */
   border: none;
   color: white;
 }
 
 .login-btn {
-  width: 50%;
+  width: 60%;
   border-radius: 5px;
   padding: 8px;
   margin: 20px;
   border: none;
   color: white;
-  font-weight: 400;
+  font-weight: 500;
   background: linear-gradient(135deg, yellow, red);
 }
 
@@ -84,12 +90,17 @@
   width: 80%;
   justify-content: space-evenly;
   align-items: center;
+  
 }
 
 .signup-link {
+  text-decoration:none;
   text-align: center;
   color: white;
-  text-decoration: none;
+}
+
+.signup-link:hover {
+  color: white;
 }
 
 .buttoned {
