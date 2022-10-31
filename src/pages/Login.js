@@ -3,10 +3,10 @@ import axios from "axios";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 
+import {Link} from "react-router-dom";
 import Spinner from "../components/Spinner";
 import styles from "../css/login.module.css";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import Alert from "../components/Alert";
 
 const Login = ({ logStateHandler }) => {

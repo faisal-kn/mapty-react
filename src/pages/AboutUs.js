@@ -1,6 +1,12 @@
 import React from "react";
 import TwoCards from "../components/TwoCards";
 import FlipCard from "../components/FlipCard";
+import location from "../images/location.png";
+import paris from "../images/paris.jpg";
+// import aboutus from "../images/aboutus.jpg";
+import AboutUsCard from "../components/AboutUsCard";
+
+
 function Aus() {
   return (
     <div>
@@ -27,35 +33,41 @@ function Aus() {
       <div className="container px-50px">
         <div className="row g-3">
           <div className="col-12 col-md-3">
-            <FlipCard
-              src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
-              h2="Pursue your hobbies"
-              p="Find what you enjoy most, meet others who love it, make new friends. Live your life restrictionless!"
+            <AboutUsCard
+              src={location}
+              h2="Share event location"
+              p="On this platform you can share the event location which enables your friends to join"
+              button="Share event location"
+              fronttext="Share location"
             />
           </div>
 
           <div data-aos-duration="2000" className="col-12 col-md-3">
-            <FlipCard
-              src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"
-              h2="Create your event"
-              p="The best thing about MAPTY is that you are no longer a side character living in someone else's world. Create your own events and live your life to the fullest."
+            <AboutUsCard
+              src={paris}
+              h2="Explore locations"
+              p="Visit a museum, try new food, go hiking, hit up a brewery tour, or just go meet new people"
+              button="Explore City"
+              fronttext="Explore"
             />
           </div>
 
           <div className="col-12 col-md-3">
-            <FlipCard
-              src="https://secure.meetupstatic.com/next/images/shared/ticket.svg?w=256 "
-              h2="Friends"
-              p="Too shy to attend events on your own? dont worry we also have support joining events with friends or
-                meetup with strangers add as friends and there you go... having a blast with your new buddies at events
-                that you all enjoy."
+            <AboutUsCard
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNxHAny0zpdTbsmXOXQVFDaYQgBV9Z_XLw0Yt01cq1P_Tj4D7CD4-MgRrthKQlxaqnGak&usqp=CAU"
+              h2="Built in chat box"
+              p="This feature enables chatting with your friends, collegues and share events through it."
+              button="Message Friends"
+              fronttext="Chat"
             />
           </div>
           <div className="col-12 col-md-3 pb-5">
-            <FlipCard
-              src="https://secure.meetupstatic.com/next/images/shared/joinGroup.svg?w=256"
-              h2="Create your event"
-              p="The best thing about MAPTY is that you are no longer a side character living in someone else's world. Create your own events and live your life to the fullest."
+            <AboutUsCard
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr-gM9hXeaiJS-NwNMbX4NzbgOezhsXGjgN_6GnHdMwfFvSeztPXEODddd7_tlifb9WVo&usqp=CAU"
+              h2="Live streaming"
+              p="Subcribers can live stream and also can watch the event."
+              button="Go Live"
+              fronttext="Go Live"
             />
           </div>
         </div>

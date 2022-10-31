@@ -1,5 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import {Button, Card} from 'react-bootstrap'
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 <script
   src="https://kit.fontawesome.com/5b8bafe0af.js"
@@ -20,11 +22,11 @@ function OurTeamCard(props) {
         <div className="my-2 d-flex align-items-center justify-content-center">
           <div style={{ margin: "5px" }}>
             <a
-              className="me-2"
+              className="me-2 fa-2xl"
               style={{ color: "black", padding: "10px" }}
               href="https://www.linkedin.com/in/siddharth25pandey/"
             >
-              <i class="fa-brands fa-linkedin fa-2x"></i>
+              <FaLinkedin size="2em"/>
             </a>
           </div>
           <div style={{ margin: "5px" }}>
@@ -33,7 +35,7 @@ function OurTeamCard(props) {
               style={{ color: "black" }}
               href="https://github.com/siddharth25pandey"
             >
-              <i className="fa-brands fa-github fa-2x"></i>
+              <FaGithub size="2em"/>
             </a>
           </div>
         </div>
