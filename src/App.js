@@ -11,6 +11,8 @@ import OurTeam from "./pages/OurTeam";
 import ContactUs from "./pages/Contactus";
 import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -19,11 +21,19 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/events" element={<Events />} />
+        <Route
+          path="/events"
+          element={
+            <PrivateRoute>
+              <Events />
+            </PrivateRoute>
+          }
+        />
         <Route path="/" element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/ourteam" element={<OurTeam />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </div>

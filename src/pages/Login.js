@@ -10,15 +10,13 @@ import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import { authActions } from "../store/index";
 import { useDispatch } from "react-redux";
+import { showNotification } from "@mantine/notifications";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { promiseInProgress } = usePromiseTracker();
-  const [alert, setAlert] = useState({
-    message: "",
-    type: "",
-  });
+
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
@@ -41,17 +39,17 @@ const Login = () => {
     e.preventDefault();
 
     if (!email || !password) {
-      setAlert({
-        message: "Please fill all the fields",
-        type: "error",
+      showNotification({
+        title: "Default notification",
+        message: "Hey there, your code is awesome! 🤥",
       });
       setShow(true);
       return;
     }
     if (email.indexOf("@") < 0) {
-      setAlert({
-        message: "Invalid email",
-        type: "error",
+      showNotification({
+        title: "Default notification",
+        message: "Hey there, your code is awesome! 🤥",
       });
       setShow(true);
       return;
@@ -74,13 +72,6 @@ const Login = () => {
         <Spinner />
       ) : (
         <>
-          {show && (
-            <Alert
-              message={alert.message}
-              type={alert.type}
-              setShow={setShow}
-            />
-          )}
           <div className={styles.page}>
             <div className={styles.container}>
               <h1 style={{ textAlign: "center", color: "white" }}>
