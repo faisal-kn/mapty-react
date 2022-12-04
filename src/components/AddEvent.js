@@ -25,7 +25,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
     e.preventDefault();
     try {
       const form = new FormData();
-      // form.append("photo", file);
+      form.append("photo", file);
       form.append("name", name);
       form.append("date", date);
       form.append("location", [lat, lng]);

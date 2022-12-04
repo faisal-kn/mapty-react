@@ -64,7 +64,7 @@ const PopularEvents = ({ events }) => {
                       <div className="row">
                         <div className="col d-flex align-items-center">
                           <img
-                            src={`/uploads/${event.photo}`}
+                            src={`/upload/${event.photo}`}
                             width="222"
                             height="125"
                             alt="img of event"
