@@ -139,22 +139,10 @@ const Signup = ({ logStateHandler }) => {
             Your first step into the future!
           </h3>
           <div className={styles.card1}>
-            <div className={styles.imaged}>
-              <img
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "15px 0 0 15px",
-                }}
-                src={image1}
-                alt=""
-              />
-            </div>
             <div className={styles.box} id="mainbox">
-              <h3 className={styles.texts} style={{ paddingBottom: "15px" }}>
+              {/* <h3 className={styles.texts} style={{ paddingBottom: "15px" }}>
                 Fill out some details
-              </h3>
+              </h3> */}
               <form
                 action="#"
                 className={styles.form1}
@@ -279,5 +267,6 @@ const Signup = ({ logStateHandler }) => {
     </div>
   );
 };
+
 
 export default Signup;

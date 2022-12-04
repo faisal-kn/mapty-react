@@ -69,7 +69,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className={styles.doby}>
       {promiseInProgress === true ? (
         <Spinner />
       ) : (
@@ -81,29 +81,23 @@ const Login = () => {
               setShow={setShow}
             />
           )}
+
           <div className={styles.page}>
             <div className={styles.container}>
-              <h1 style={{ textAlign: "center", color: "white" }}>
-                Login to your account
+              <h1 style={{ textAlign: "center", color: "black", paddingTop: "50px"}}>
+                Login
               </h1>
               <h3
                 style={{
                   textAlign: "center",
-                  color: "white",
+                  color: "black",
                   fontSize: "18px",
-                  opacity: "0.4",
+                  opacity: "0.8",
                 }}
               >
-                Make sure to share our platform with your friends!
+                Share our platform with your friends!
               </h3>
-              <div className={styles.box}>
-                <div className={styles.image}>
-                  <img
-                    src="https://img.freepik.com/free-vector/navigation-map-street-3d-location-pin-locator-pins-pointer-navigator-maps-locations-marker_102902-1053.jpg?size=626&ext=jpg&ga=GA1.1.1097707927.1648489757"
-                    className={styles.images}
-                    alt=""
-                  />
-                </div>
+        
                 <div className={styles.box1}>
                   <form
                     action="#"
@@ -141,10 +135,9 @@ const Login = () => {
                 </div>
               </div>
             </div>
-          </div>
         </>
       )}
-    </>
+    </div>
   );
 };
 
