@@ -12,7 +12,7 @@ function Header() {
       {" "}
       <nav
         class="navbar navbar-expand-lg navbar-light position"
-        style={{ backgroundColor: "bisque", padding: "10px" }}
+        style={{ backgroundColor: "#4774a1", padding: "10px" }}
       >
         <div class="nav-logo">
           <Link to="/">
@@ -43,39 +43,39 @@ function Header() {
           <ul class="navbar-nav ms-auto mb-2 mg-lg-0 pt-1">
             <li class="nav-item active">
               <Link class="nav-link" to="/">
-                Home<span class="sr-only"></span>
+                <b style={{color:"white", fontWeight:"600"}}>Home<span class="sr-only"></span></b>
               </Link>
             </li>
             <li class="nav-item">
               {isLoggedIn && (
                 <Link to="/events" class="nav-link">
-                  Events
+                  <b style={{color:"white" , fontWeight:"600"}}>Events</b>
                 </Link>
               )}
               {!isLoggedIn && (
                 <Link to="/login" class="nav-link">
-                  Login
+                  <b style={{color:"white", fontWeight:"600"}}>Login</b>
                 </Link>
               )}
             </li>
 
             <li class="nav-item">
               <Link class="nav-link" to="aboutus">
-                About us
+                <b style={{color:"white" , fontWeight:"600"}}>About us</b>
               </Link>
             </li>
 
             <li class="nav-item">
               {isLoggedIn && (
                 <Link class="nav-link" to="contactus">
-                  Contact us
+                  <b style={{color:"white", fontWeight:"600"}}>Contact us</b>
                 </Link>
               )}
             </li>
 
             <li class="nav-item">
               <Link class="nav-link" to="ourteam">
-                Our team
+                <b style={{color:"white", fontWeight:"600"}}>Our team</b>
               </Link>
             </li>
           </ul>
