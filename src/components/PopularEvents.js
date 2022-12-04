@@ -10,7 +10,6 @@ const PopularEvents = ({ events }) => {
     (maxElement, currentPage, maxPerPage, data = []) => {
       const start = (currentPage - 1) * maxPerPage;
       let end = start + maxPerPage;
-      console.log(start, " ", end, " ", maxElement);
       if (end > maxElement) {
         end = maxElement;
       }
@@ -60,7 +59,6 @@ const PopularEvents = ({ events }) => {
               <h5 className="card-title text-center">CURRENT POPULAR EVENTS</h5>
               <div id="popular-events">
                 {renderedEvents.map((event, i) => {
-                  console.log(event);
                   return (
                     <div key={i} style={{ height: "50%" }}>
                       <div className="row">
@@ -120,7 +118,11 @@ const PopularEvents = ({ events }) => {
                 >
                   <div id="left-btn" onClick={leftEventHandler}>
                     <AiFillLeftCircle
-                      style={{ fontSize: "28px", paddingRight: "5px" }}
+                      style={{
+                        fontSize: "28px",
+                        paddingRight: "5px",
+                        cursor: "pointer",
+                      }}
                     />
                   </div>
                   <span id="page">{currentPage}</span>
@@ -128,7 +130,11 @@ const PopularEvents = ({ events }) => {
                   <span id="max-page">{totalPage}</span>
                   <div id="right-btn" onClick={rightEventHandler}>
                     <AiFillRightCircle
-                      style={{ fontSize: "28px", paddingLeft: "5px" }}
+                      style={{
+                        fontSize: "28px",
+                        paddingLeft: "5px",
+                        cursor: "pointer",
+                      }}
                     />
                   </div>
                 </div>

@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, useMapEvents, useMap } from "react-leaflet";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import "leaflet/dist/leaflet.css";
 import CustomMarker from "./CustomMarker";
 
@@ -18,7 +18,7 @@ const MapCont = ({
     };
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setCoords, function () {
-        alert("Could not get your location");
+        // alert("Could not get your location");
       });
     }
   }, []);

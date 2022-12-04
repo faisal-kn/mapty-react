@@ -5,6 +5,8 @@ import PopularEvents from "../components/PopularEvents";
 import AddEvent from "../components/AddEvent";
 import MapCont from "../components/MapCont";
 import "../css/map.css";
+import { Alert } from "@mantine/core";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 import axios from "axios";
 
@@ -17,6 +19,7 @@ const Events = () => {
   const [centerLat, setCenterLat] = useState(14.4484);
   const [centerLng, setCenterLng] = useState(79.9888);
   const [events, setEvents] = useState([]);
+  const [notif, setNotif] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -70,6 +73,17 @@ const Events = () => {
   return (
     <div>
       <div className="container-fluid " style={{ marginTop: "60px" }}>
+        {notif && (
+          <Alert
+            withCloseButton
+            closeButtonLabel="Close alert"
+            title="To Add Event"
+            color="red"
+            icon={<AiOutlineExclamationCircle size={16} />}
+          >
+            Click on the map to add event
+          </Alert>
+        )}
         <div className="row pb-4">
           <div className="col-lg-4 aside-container">
             <Filterevents
@@ -81,13 +95,17 @@ const Events = () => {
                 type="button"
                 className="btn btn-outline-success mt-4 mb-3"
                 id="fourthButton"
-                onClick={() => setAddEvent(true)}
+                onClick={() => {
+                  setAddEvent(true);
+                  setNotif(true);
+                }}
               >
                 Create Event
               </button>
             </div>
             <PopularEvents events={events} />
           </div>
+
           <AddEvent
             lat={clickedLat}
             lng={clickedLng}

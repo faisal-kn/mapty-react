@@ -25,7 +25,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
     e.preventDefault();
     try {
       const form = new FormData();
-      form.append("photo", file);
+      // form.append("photo", file);
       form.append("name", name);
       form.append("date", date);
       form.append("location", [lat, lng]);
@@ -33,7 +33,6 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
       form.append("host", ctx.username);
       form.append("description", description);
       form.append("totalSpot", totalSpot);
-
       const options = {
         url: "http://localhost:3001/api/event/create-event",
         method: "POST",
@@ -43,6 +42,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
       };
 
       const res = await axios(options);
+      console.log(res);
       if (res.data.status === "success") {
         addMarkerHandler([res.data.data.newEvent]);
         handleClose();
@@ -173,7 +173,6 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
                   name="photo"
                   id="photo"
                   onChange={(e) => setFile(e.target.files[0])}
-                  required
                 />
               </div>
             </div>
