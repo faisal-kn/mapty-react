@@ -1,44 +1,58 @@
 import { useState } from "react";
 import "../css/Contactus.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import Footer from './Footer';
-// import Navbar from './Navbar';
-import Alert from "../components/Alert";
+import { showNotification } from "@mantine/notifications";
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 function Contactus() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [issue, setIssue] = useState(false);
-  const [alert, setAlert] = useState({
-    message: "",
-    type: "",
-  });
-  const [show, setShow] = useState(false);
   const submitHandler = (e) => {
     e.preventDefault();
     if (!name || !email || !message) {
-      setAlert({
-        message: "Please fill all the fields",
-        type: "error",
+      showNotification({
+        title: "Error",
+        message: "Fill all the fields",
+        color: "red",
+        autoClose: 5000,
       });
-      setShow(true);
       return;
     }
     if (email.indexOf("@") < 0) {
-      setAlert({
-        message: "Invalid email",
-        type: "error",
+      // setAlert({
+      //   message: "Invalid email",
+      //   type: "error",
+      // });
+      showNotification({
+        title: "Error",
+        message: "Enter a Valid Email",
+        color: "red",
+        autoClose: 5000,
       });
-      setShow(true);
       return;
     }
-    console.log(name, email, message, issue);
   };
   return (
     <div className="main">
-      {/* <Footer/> */}
-
+      <div className="text">
+        <h1 className="heading">Contact Us</h1>
+        <p>
+          Fill out our contact form to get in touch with us. we will respond to
+          your message as soon as possible. Please check the 'reporting an
+          issue' box to report any issue you have faced with the website.
+          <br />
+          We hope you didn't have too much trouble. Please leave feedback of how
+          your experience visiting our website was. Any queries regarding the
+          website are more than welcome.
+        </p>
+        <p>
+          <strong>
+            <em>Details given will never be shared with anyone</em>
+          </strong>
+        </p>
+      </div>
       <div className="details">
         <h2 className="alt-heaing">Contact Form</h2>
         <br />
@@ -66,8 +80,6 @@ function Contactus() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <br></br>
-
           <div className="form-group">
             <label for="exampleFormControlTextarea1">Message </label>
             <textarea
@@ -78,7 +90,6 @@ function Contactus() {
               onChange={(e) => setMessage(e.target.value)}
             ></textarea>
           </div>
-          <br></br>
 
           <div className="form-check">
             <input
@@ -97,28 +108,6 @@ function Contactus() {
             Submit
           </button>
         </form>
-      </div>
-      <br></br>
-
-      <div className="text">
-        <h1 className="heading">Contact Us</h1>
-        <p>
-          Fill out our contact form to get in touch with us. we will respond to
-          your message as soon as possible. Please check the 'reporting an
-          issue' box to report any issue you have faced with the website.
-          <br />
-          We hope you didn't have too much trouble. Please leave feedback of how
-          your experience visiting our website was. Any queries regarding the
-          website are more than welcome.
-        </p>
-        <p>
-          <strong>
-            <em>Details given will never be shared with anyone</em>
-          </strong>
-        </p>
-        {show && (
-          <Alert message={alert.message} type={alert.type} setShow={setShow} />
-        )}
       </div>
     </div>
   );
