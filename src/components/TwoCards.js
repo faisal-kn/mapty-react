@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function TwoCards(props) {
   return (
     <>
-      <Container className="containerFluid" style={{ padding: "50px" }}>
+      <Container className="containerFluid" style={{ padding: "50px" ,backgroundColor:"transparent" }}>
         <Row className="row gx-5">
           <Col className="col-12 col-md-6 p-3 bg-light" style={{}}>
             <div>

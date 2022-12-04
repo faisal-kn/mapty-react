@@ -12,6 +12,7 @@ import marathon from "../images/marathon.jpg";
 
 import FlipCard from "../components/FlipCard";
 import StoryCard from "../components/StoryCard";
+import styles from "../css/home.module.css";
 
 function Home() {
   useEffect(() => {
@@ -19,7 +20,7 @@ function Home() {
   });
 
   return (
-    <>
+    <div class="body">
       <div
         style={{
           fontSize: "50px",
@@ -52,8 +53,7 @@ function Home() {
         <div
           style={{
             backgroundImage:
-              "https://secure.meetupstatic.com/next/images/blobs/green-blob.svg",
-          }}
+              "https://secure.meetupstatic.com/next/images/blobs/green-blob.svg",opacity:"1"}}
         >
           <TwoCards
             h1="Welcome to Mapty"
@@ -69,12 +69,13 @@ function Home() {
       </div>
 
       <div className="container px-50px">
-        <div className="row g-3">
-          <div data-aos="fade-right" className="col-12 col-md-4">
+        <div className={styles.cont}>
+          <div data-aos="fade-right" className="col-12 col-md-4" style={{diplay:"flex" , alignItems:"center"}}>
             <FlipCard
               src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
               h2="Pursue your hobbies"
               p="Find what you enjoy most, meet others who love it, make new friends. Live your life restrictionless!"
+              className={styles.cardflip}
             />
           </div>
 
@@ -290,7 +291,7 @@ function Home() {
           </Carousel.Item>
         </Carousel>
       </div>
-    </>
+    </div>
   );
 }
 

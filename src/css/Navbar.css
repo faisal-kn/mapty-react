@@ -1,5 +1,10 @@
+*{
+  color: black;
+}
+
 a {
   font-size: larger;
+  color: black;
 }
 
 .position {
