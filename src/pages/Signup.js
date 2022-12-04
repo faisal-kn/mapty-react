@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import styles from "../css/signup.module.css";
-import image1 from "../images/signup1.jpg";
-import Alert from "../components/Alert";
+import { authActions } from "../store/index";
+import { useDispatch } from "react-redux";
+import { showNotification } from "@mantine/notifications";
 
-const Signup = ({ logStateHandler }) => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -23,11 +24,8 @@ const Signup = ({ logStateHandler }) => {
     Random_meetups: false,
     Hangouts: false,
   });
-  const [alert, setAlert] = useState({
-    message: "",
-    type: "",
-  });
-  const [show, setShow] = useState(false);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,10 +54,11 @@ const Signup = ({ logStateHandler }) => {
       const data = await axios(options);
       console.log(data.data);
       if (data.data.status === "success") {
-        logStateHandler(
-          true,
-          data.data.data.newUser._id,
-          data.data.data.newUser.username
+        dispatch(
+          authActions.login({
+            id: data.data.data.newUser._id,
+            username: data.data.data.newUser.username,
+          })
         );
         navigate("/events", { replace: true });
       }
@@ -72,39 +71,49 @@ const Signup = ({ logStateHandler }) => {
     const mainbox1 = document.getElementById("mainbox");
     const altbox1 = document.getElementById("altbox");
     if (password !== confirmPassword) {
-      setAlert({
+      showNotification({
+        title: "Error",
         message: "Passwords do not match",
-        type: "error",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
       });
-      setShow(true);
       return;
     }
 
-    if (email.indexOf("@") < 0) {
-      setAlert({
-        message: "Invalid email",
-        type: "error",
-      });
-      setShow(true);
-      return;
-    }
-    if (password.length < 8) {
-      setAlert({
-        message: "Password must be atleast 8 characters long",
-        type: "error",
-      });
-      setShow(true);
-      return;
-    }
     if (username && email && password && confirmPassword) {
       mainbox1.style.display = "none";
       altbox1.style.display = "flex";
     } else {
-      setAlert({
+      showNotification({
+        title: "Error",
         message: "Please fill all the fields",
-        type: "error",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
       });
-      setShow(true);
+      return;
+    }
+
+    if (password.length < 8) {
+      showNotification({
+        title: "Error",
+        message: "Password must be atleast 8 characters long",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
+      });
+      return;
+    }
+
+    if (email.indexOf("@") < 0) {
+      showNotification({
+        title: "Error",
+        message: "Invalid Email",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
+      });
       return;
     }
   };
@@ -129,9 +138,6 @@ const Signup = ({ logStateHandler }) => {
 
   return (
     <div className={styles.main_div}>
-      {show && (
-        <Alert message={alert.message} type={alert.type} setShow={setShow} />
-      )}
       <div className={styles.page}>
         <div className={styles.container}>
           <h1 className={styles.heading}>Create your account</h1>
@@ -140,9 +146,6 @@ const Signup = ({ logStateHandler }) => {
           </h3>
           <div className={styles.card1}>
             <div className={styles.box} id="mainbox">
-              {/* <h3 className={styles.texts} style={{ paddingBottom: "15px" }}>
-                Fill out some details
-              </h3> */}
               <form
                 action="#"
                 className={styles.form1}
@@ -267,6 +270,5 @@ const Signup = ({ logStateHandler }) => {
     </div>
   );
 };
-
 
 export default Signup;

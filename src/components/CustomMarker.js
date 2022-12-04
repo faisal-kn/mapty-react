@@ -5,9 +5,12 @@ const CustomMarker = ({ position, popupDetail }) => {
   const icon = L.icon({ iconUrl: "/images/marker-icon.png" });
   return (
     <Marker position={position} icon={icon}>
-      <Popup>
-        <a href={`/events/${popupDetail._id}`}>
-          <h3>{popupDetail.name}</h3>
+      <Popup className="cycling-popup">
+        <a
+          href={`/events/${popupDetail._id}`}
+          style={{ textDecoration: "none" }}
+        >
+          <h5>{popupDetail.name}</h5>
         </a>
       </Popup>
     </Marker>

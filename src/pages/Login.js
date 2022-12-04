@@ -16,8 +16,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { promiseInProgress } = usePromiseTracker();
 
-  const [show, setShow] = useState(false);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,18 +37,22 @@ const Login = () => {
 
     if (!email || !password) {
       showNotification({
-        title: "Default notification",
-        message: "Hey there, your code is awesome! 🤥",
+        title: "Error",
+        message: "Please fill all the fields",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
       });
-      setShow(true);
       return;
     }
     if (email.indexOf("@") < 0) {
       showNotification({
-        title: "Default notification",
-        message: "Hey there, your code is awesome! 🤥",
+        title: "Error",
+        message: "Email is not valid",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
       });
-      setShow(true);
       return;
     }
     const res = await trackPromise(submitHandler());
@@ -73,7 +75,15 @@ const Login = () => {
         <>
           <div className={styles.page}>
             <div className={styles.container}>
-              <h1 style={{ textAlign: "center", color: "black", paddingTop: "50px"}}>
+              <h1
+                style={{
+                  textAlign: "center",
+                  color: "black",
+                  fontSize: "2rem",
+                  fontWeight:"bold",
+                  paddingTop: "50px",
+                }}
+              >
                 Login
               </h1>
               <h3
@@ -86,44 +96,44 @@ const Login = () => {
               >
                 Share our platform with your friends!
               </h3>
-        
-                <div className={styles.box1}>
-                  <form
-                    action="#"
-                    className={styles.form}
-                    onSubmit={promiseHandler}
-                  >
-                    <input
-                      className={styles.details}
-                      type="email"
-                      name="username"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                    <input
-                      className={styles.details}
-                      type="password"
-                      name="password"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
-                    />
-                    <button type="submit" className={styles["login-btn"]}>
-                      Login
-                    </button>
-                  </form>
-                  <div className={styles.copy}>
-                    <button className={styles["login-btn"]}>
-                      <Link to="/signup" className={styles["signup-link"]}>
-                        Create Account
-                      </Link>
-                    </button>
-                  </div>
+
+              <div className={styles.box1}>
+                <form
+                  action="#"
+                  className={styles.form}
+                  onSubmit={promiseHandler}
+                >
+                  <input
+                    className={styles.details}
+                    type="email"
+                    name="username"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <input
+                    className={styles.details}
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                  />
+                  <button type="submit" className={styles["login-btn"]}>
+                    Login
+                  </button>
+                </form>
+                <div className={styles.copy}>
+                  <button className={styles["login-btn"]}>
+                    <Link to="/signup" className={styles["signup-link"]}>
+                      Create Account
+                    </Link>
+                  </button>
                 </div>
               </div>
             </div>
+          </div>
         </>
       )}
     </div>
