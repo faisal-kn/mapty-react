@@ -3,13 +3,15 @@ import axios from "axios";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from "react-promise-tracker";
 
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import styles from "../css/login.module.css";
 import { useNavigate } from "react-router-dom";
 import Alert from "../components/Alert";
+import { authActions } from "../store/index";
+import { useDispatch } from "react-redux";
 
-const Login = ({ logStateHandler }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { promiseInProgress } = usePromiseTracker();
@@ -20,6 +22,8 @@ const Login = ({ logStateHandler }) => {
   const [show, setShow] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const submitHandler = async (e) => {
     const options = {
       url: "http://localhost:3001/api/user/login",
@@ -54,10 +58,11 @@ const Login = ({ logStateHandler }) => {
     }
     const res = await trackPromise(submitHandler());
     if (res.data.status === "success") {
-      logStateHandler(
-        true,
-        res.data.data.user._id,
-        res.data.data.user.username
+      dispatch(
+        authActions.login({
+          id: res.data.data.user._id,
+          username: res.data.data.user.username,
+        })
       );
       navigate("/events", { replace: true });
     }

@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Navbar.css";
 import { Link } from "react-router-dom";
 import Logo from "../images/logo.png";
-import AuthContext from "../context/auth-context";
+import { useSelector } from "react-redux";
 
 function Header() {
-  const ctx = useContext(AuthContext);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   return (
     <div>
@@ -35,7 +34,7 @@ function Header() {
           data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle n    avigation"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,12 +47,12 @@ function Header() {
               </Link>
             </li>
             <li class="nav-item">
-              {ctx.isLoggedIn && (
+              {isLoggedIn && (
                 <Link to="/events" class="nav-link">
                   Events
                 </Link>
               )}
-              {!ctx.isLoggedIn && (
+              {!isLoggedIn && (
                 <Link to="/login" class="nav-link">
                   Login
                 </Link>
@@ -67,7 +66,7 @@ function Header() {
             </li>
 
             <li class="nav-item">
-              {ctx.isLoggedIn && (
+              {isLoggedIn && (
                 <Link class="nav-link" to="contactus">
                   Contact us
                 </Link>

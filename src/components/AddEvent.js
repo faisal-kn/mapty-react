@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import AuthContext from "../context/auth-context";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
   const currentDate = new Date();
@@ -19,7 +19,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
   const [description, setDescription] = useState("");
   const [file, setFile] = useState(null);
 
-  const ctx = useContext(AuthContext);
+  const username = useSelector((state) => state.username);
 
   const formSubmitHandler = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
       form.append("date", date);
       form.append("location", [lat, lng]);
       form.append("hobby", hobby);
-      form.append("host", ctx.username);
+      form.append("host", username);
       form.append("description", description);
       form.append("totalSpot", totalSpot);
       const options = {
@@ -132,7 +132,7 @@ const AddEvent = ({ lat, lng, show, handleClose, addMarkerHandler }) => {
                     type="text"
                     id="host"
                     name="host"
-                    value={ctx.username}
+                    value={username}
                     required
                     disabled
                   />
