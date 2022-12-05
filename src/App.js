@@ -13,6 +13,7 @@ import NavBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import Error from "./pages/Error";
 import ParticularEvent from "./pages/ParticularEvent";
+import AdminPortal from "./pages/AdminPortal";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/ourteam" element={<OurTeam />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/events/:eventid" element={<ParticularEvent />} />
+        <Route path="/admin" element={<AdminPortal />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

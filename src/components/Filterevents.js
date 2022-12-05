@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 
 import axios from "axios";
+import { showNotification } from "@mantine/notifications";
 
 const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
   const [hobby, setHobby] = useState("Games");
@@ -39,7 +40,13 @@ const Filterevents = ({ filterMarkerHandler, setMapCenterCoords }) => {
       const { latitude, longitude } = res.data.data[0];
       setMapCenterCoords(latitude, longitude);
     } catch (err) {
-      console.log(err);
+      showNotification({
+        title: "Error",
+        message: "API service is not available currently",
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
+      });
     }
   };
 

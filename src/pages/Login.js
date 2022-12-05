@@ -55,87 +55,93 @@ const Login = () => {
       });
       return;
     }
-    const res = await trackPromise(submitHandler());
-    if (res.data.status === "success") {
-      dispatch(
-        authActions.login({
-          id: res.data.data.user._id,
-          username: res.data.data.user.username,
-        })
-      );
-      navigate("/events", { replace: true });
+    try {
+      const res = await trackPromise(submitHandler());
+      if (res.data.status === "success") {
+        dispatch(
+          authActions.login({
+            id: res.data.data.user._id,
+            username: res.data.data.user.username,
+          })
+        );
+        navigate("/events", { replace: true });
+      }
+    } catch (err) {
+      showNotification({
+        title: "Error",
+        message: err.message,
+        color: "red",
+        autoClose: 5000,
+        style: { textTransform: "capitalize" },
+      });
     }
   };
 
   return (
     <div className={styles.doby}>
-      {promiseInProgress === true ? (
-        <Spinner />
-      ) : (
-        <>
-          <div className={styles.page}>
-            <div className={styles.container}>
-              <h1
-                style={{
-                  textAlign: "center",
-                  color: "black",
-                  fontSize: "2rem",
-                  fontWeight:"bold",
-                  paddingTop: "50px",
-                }}
-              >
-                Login
-              </h1>
-              <h3
-                style={{
-                  textAlign: "center",
-                  color: "black",
-                  fontSize: "18px",
-                  opacity: "0.8",
-                }}
-              >
-                Share our platform with your friends!
-              </h3>
+      <>
+        <div className={styles.page}>
+          <div className={styles.container}>
+            <h1
+              style={{
+                textAlign: "center",
+                color: "black",
+                fontSize: "2rem",
+                fontWeight: "bold",
+                paddingTop: "50px",
+              }}
+            >
+              Login
+            </h1>
+            <h3
+              style={{
+                textAlign: "center",
+                color: "black",
+                fontSize: "18px",
+                opacity: "0.8",
+              }}
+            >
+              Share our platform with your friends!
+            </h3>
 
-              <div className={styles.box1}>
-                <form
-                  action="#"
-                  className={styles.form}
-                  onSubmit={promiseHandler}
-                >
-                  <input
-                    className={styles.details}
-                    type="email"
-                    name="username"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <input
-                    className={styles.details}
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Enter your password"
-                  />
-                  <button type="submit" className={styles["login-btn"]}>
-                    Login
-                  </button>
-                </form>
-                <div className={styles.copy}>
-                  <button className={styles["login-btn"]}>
-                    <Link to="/signup" className={styles["signup-link"]}>
-                      Create Account
-                    </Link>
-                  </button>
-                </div>
+            <div className={styles.box1}>
+              <form
+                action="#"
+                className={styles.form}
+                onSubmit={promiseHandler}
+              >
+                <input
+                  className={styles.details}
+                  type="email"
+                  name="username"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  className={styles.details}
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                />
+                <button type="submit" className={styles["login-btn"]}>
+                  Login
+                </button>
+              </form>
+              <div className={styles.copy}>
+                <button className={styles["login-btn"]}>
+                  <Link to="/signup" className={styles["signup-link"]}>
+                    Create Account
+                  </Link>
+                </button>
               </div>
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </>
     </div>
   );
 };

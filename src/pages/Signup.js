@@ -6,6 +6,7 @@ import styles from "../css/signup.module.css";
 import { authActions } from "../store/index";
 import { useDispatch } from "react-redux";
 import { showNotification } from "@mantine/notifications";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -212,12 +213,12 @@ const Signup = () => {
                 </button>
                 <div style={{ paddingTop: "20px" }}>
                   Already have an account ?{" "}
-                  <a
-                    href="/login"
+                  <Link
+                    to="/login"
                     style={{ textDecoration: "none", color: "orange" }}
                   >
                     Sign in
-                  </a>
+                  </Link>
                 </div>
               </form>
             </div>
