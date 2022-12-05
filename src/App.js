@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import NavBar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import Error from "./pages/Error";
+import ParticularEvent from "./pages/ParticularEvent";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/ourteam" element={<OurTeam />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/events/:eventid" element={<ParticularEvent />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
