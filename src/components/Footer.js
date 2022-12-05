@@ -16,7 +16,7 @@ function Footer() {
             <div class="col-xl-4 col-lg-4 mb-50">
               <div class="footer-widget">
                 <div class="footer-logo">
-                  <Link to="/">
+                  <Link to="/" style={{ textDecoration: "none" }}>
                     <img
                       src={image1}
                       style={{
@@ -47,19 +47,30 @@ function Footer() {
                   {!isLoggedIn && (
                     <div>
                       <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" style={{ textDecoration: "none" }}>
+                          Home
+                        </Link>
                       </li>
                       {/* <li><Link to="/contactus">Contact Us</Link></li>
               <li><Link to="/aboutus">About Us</Link></li>
               <li><Link to="/ourteam">Our Team</Link></li> */}
                       <li>
-                        <Link to="/login">Login</Link>
+                        <Link to="/login" style={{ textDecoration: "none" }}>
+                          Login
+                        </Link>
                       </li>
                       <li>
-                        <Link to="/signup">Sign up</Link>
+                        <Link to="/signup" style={{ textDecoration: "none" }}>
+                          Sign up
+                        </Link>
                       </li>
                       <li>
-                        <Link to="/adminportal">Admin Portal</Link>
+                        <Link
+                          to="/adminportal"
+                          style={{ textDecoration: "none" }}
+                        >
+                          Admin Portal
+                        </Link>
                       </li>
                     </div>
                   )}
@@ -67,16 +78,30 @@ function Footer() {
                   {isLoggedIn && (
                     <div>
                       <li>
-                        <Link to="/">Home</Link>
+                        <Link to="/" style={{ textDecoration: "none" }}>
+                          Home
+                        </Link>
                       </li>
                       <li>
-                        <Link to="/userprofile">User Profile</Link>
+                        <Link
+                          to="/userprofile"
+                          style={{ textDecoration: "none" }}
+                        >
+                          User Profile
+                        </Link>
                       </li>
                       <li>
-                        <Link to="/events">Events</Link>
+                        <Link to="/events" style={{ textDecoration: "none" }}>
+                          Events
+                        </Link>
                       </li>
                       <li>
-                        <Link to="/adminportal">Admin Portal</Link>
+                        <Link
+                          to="/adminportal"
+                          style={{ textDecoration: "none" }}
+                        >
+                          Admin Portal
+                        </Link>
                       </li>
                     </div>
                   )}
@@ -91,13 +116,19 @@ function Footer() {
                 <ul>
                   <div>
                     <li>
-                      <Link to="/aboutus">About us</Link>
+                      <Link to="/aboutus" style={{ textDecoration: "none" }}>
+                        About us
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/contactus">Contact us</Link>
+                      <Link to="/contactus" style={{ textDecoration: "none" }}>
+                        Contact us
+                      </Link>
                     </li>
                     <li>
-                      <Link to="/newTeam">Teams</Link>
+                      <Link to="/newTeam" style={{ textDecoration: "none" }}>
+                        Teams
+                      </Link>
                     </li>
                   </div>
                 </ul>

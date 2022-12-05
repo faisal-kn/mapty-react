@@ -26,8 +26,12 @@ function Home() {
           fontSize: "50px",
           paddingTop: "40px",
           textAlign: "center",
-          fontStyle: "oblique",
+          // fontStyle: "oblique",
           fontWeight: "500",
+          letterSpacing: ".1em",
+          animation:
+            "typing 3.5s steps(30, end), blink-caret .75s step-end infinite",
+          fontFamily: "monospace",
         }}
       >
         <Typewriter
@@ -53,7 +57,9 @@ function Home() {
         <div
           style={{
             backgroundImage:
-              "https://secure.meetupstatic.com/next/images/blobs/green-blob.svg",opacity:"1"}}
+              "https://secure.meetupstatic.com/next/images/blobs/green-blob.svg",
+            opacity: "1",
+          }}
         >
           <TwoCards
             h1="Welcome to Mapty"
@@ -70,7 +76,11 @@ function Home() {
 
       <div className="container px-50px">
         <div className={styles.cont}>
-          <div data-aos="fade-right" className="col-12 col-md-4" style={{diplay:"flex" , alignItems:"center"}}>
+          <div
+            data-aos="fade-right"
+            className="col-12 col-md-4"
+            style={{ diplay: "flex", alignItems: "center" }}
+          >
             <FlipCard
               src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=256"
               h2="Pursue your hobbies"
@@ -252,7 +262,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="container" style={{ marginBottom: "40px" }}>
+      <div className="container" style={{ paddingBottom: "40px" }}>
         <Carousel>
           <Carousel.Item>
             <img

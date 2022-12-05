@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const PopularEvents = ({ events }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +86,7 @@ const PopularEvents = ({ events }) => {
                               {event.totalSpot} spots left
                             </span>
                           </p>
-                          <a href={`/events/${event._id}`}>
+                          <Link to={`/events/${event._id}`}>
                             <button
                               className="btn btn-success"
                               style={{ marginBottom: "10px" }}
@@ -94,7 +95,7 @@ const PopularEvents = ({ events }) => {
                               {" "}
                               Get to know more
                             </button>
-                          </a>
+                          </Link>
                         </div>
                         <hr
                           style={{
