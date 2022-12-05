@@ -5,6 +5,9 @@ import axios from "axios";
 const ParticularEvent = () => {
   const [event, setEvent] = useState({});
   const { eventid } = useParams();
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     const getEvent = async () => {
@@ -21,6 +24,9 @@ const ParticularEvent = () => {
         console.log(res);
         if (res.data.status === "success") {
           setEvent(res.data.data.event);
+          setLat(res.data.data.event.location[0].toFixed(2));
+          setLng(res.data.data.event.location[1].toFixed(2));
+          setDate(res.data.data.event.date.substring(0, 10));
         }
       } catch (err) {
         console.log(err);
@@ -53,10 +59,10 @@ const ParticularEvent = () => {
               </h1>
               <div>
                 <p style={{ padding: "20px", fontSize: "large" }}>
-                  Location :{event.location}
+                  Location :{`${lat}, ${lng}`}
                   <br />
                   <br />
-                  Date : {event.date} <br />
+                  Date : {date} <br />
                   <br />
                   Attendees : {event.attendees} <br />
                   <br />
