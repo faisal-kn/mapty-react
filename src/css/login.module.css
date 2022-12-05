@@ -141,15 +141,6 @@ body {
 h2 {
   font-family: "Vollkorn", serif;
   font-size: 26px;
-  text-transform: none;
-}
-
-.btn p {
-  font-size: 14px;
-}
-
-p#or {
-  font-size: 10px;
 }
 
 a {
@@ -159,27 +150,12 @@ a {
 
 /* ---  PAGE LAYOUT --- */
 
-* {
-  box-sizing: border-box;
-}
-
-h2 {
-  width: 500px;
-  margin: 60px auto 10px auto;
-  padding: 10px;
-}
-
 div.row {
   padding: 10px 0;
   width: 570px;
   margin: 0 auto;
 }
 
-.btn,
-p {
-  display: inline-block;
-  vertical-align: middle;
-}
 
 .btn {
   position: relative;
