@@ -35,7 +35,7 @@ function App() {
         <Route path="/ourteam" element={<OurTeam />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/events/:eventid" element={<ParticularEvent />} />
-        <Route path="/admin" element={<AdminPortal />} />
+        <Route path="/adminportal" element={<AdminPortal />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

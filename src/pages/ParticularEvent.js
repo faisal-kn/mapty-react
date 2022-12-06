@@ -73,14 +73,14 @@ const ParticularEvent = () => {
                   <br />
                   Description : {event.description}
                 </p>
-                <button
+                {/* <button
                   style={{ margin: "20px", fontSize: "large" }}
                   className="btn btn-outline-secondary mt-4"
                   id="firstButton"
                   type="submit"
                 >
                   Join
-                </button>
+                </button> */}
               </div>
             </div>
 
