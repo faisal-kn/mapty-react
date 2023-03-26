@@ -14,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Error from "./pages/Error";
 import ParticularEvent from "./pages/ParticularEvent";
 import AdminPortal from "./pages/AdminPortal";
+import VerifyEmail from "./pages/VerifyEmail";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/events/:eventid" element={<ParticularEvent />} />
         <Route path="/adminportal" element={<AdminPortal />} />
+        <Route path="/verify/:token" element={<VerifyEmail />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

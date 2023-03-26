@@ -126,7 +126,7 @@ function Footer() {
                       </Link>
                     </li>
                     <li>
-                      <Link to="/newTeam" style={{ textDecoration: "none" }}>
+                      <Link to="/ourteam" style={{ textDecoration: "none" }}>
                         Teams
                       </Link>
                     </li>
