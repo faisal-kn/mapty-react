@@ -21,7 +21,7 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     const options = {
-      url: "http://localhost:3001/api/user/login",
+      url: "https://mapty-server.onrender.com/api/user/login",
       method: "POST",
       withCredentials: true,
       data: {
