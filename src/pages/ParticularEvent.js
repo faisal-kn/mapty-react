@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { showNotification } from "@mantine/notifications";
 
 const ParticularEvent = () => {
   const [event, setEvent] = useState({});
@@ -8,7 +9,8 @@ const ParticularEvent = () => {
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
   const [date, setDate] = useState("");
-
+  const [attendes, setAttendes] = useState(0);
+  const [isJoined, setIsJoined] = useState(false);
   useEffect(() => {
     const getEvent = async () => {
       try {
@@ -24,6 +26,7 @@ const ParticularEvent = () => {
         console.log(res);
         if (res.data.status === "success") {
           setEvent(res.data.data.event);
+          setAttendes(res.data.data.event.attendees);
           setLat(res.data.data.event.location[0].toFixed(2));
           setLng(res.data.data.event.location[1].toFixed(2));
           setDate(res.data.data.event.date.substring(0, 10));
@@ -34,6 +37,29 @@ const ParticularEvent = () => {
     };
     getEvent();
   }, []);
+
+  const joinEventHandler = async (e) => {
+    try {
+      if (attendes === event.totalSpot) {
+        showNotification({
+          title: "Error",
+          message: "Event is full",
+          color: "red",
+          autoClose: 5000,
+          style: { textTransform: "capitalize" },
+        });
+        return;
+      } else if (attendes < event.totalSpot && !isJoined) {
+        setIsJoined(true);
+        setAttendes((prev) => prev + 1);
+      } else {
+        setIsJoined(false);
+        setAttendes((prev) => prev - 1);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -64,7 +90,7 @@ const ParticularEvent = () => {
                   <br />
                   Date : {date} <br />
                   <br />
-                  Attendees : {event.attendees} <br />
+                  Attendees : {attendes} <br />
                   <br />
                   Hobby : {event.hobby} <br />
                   <br />
@@ -73,14 +99,14 @@ const ParticularEvent = () => {
                   <br />
                   Description : {event.description}
                 </p>
-                {/* <button
+                <button
                   style={{ margin: "20px", fontSize: "large" }}
                   className="btn btn-outline-secondary mt-4"
                   id="firstButton"
-                  type="submit"
+                  onClick={joinEventHandler}
                 >
                   Join
-                </button> */}
+                </button>
               </div>
             </div>
 
